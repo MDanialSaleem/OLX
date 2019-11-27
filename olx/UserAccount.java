@@ -25,7 +25,7 @@ public class UserAccount extends Account {
         ChatsInitiated = chatsInitiated;
     }
     
-    public Advertisement postAdvertisement() {
+    public Advertisement postAdvertisement(Advertisement ad) {
     	return null;
     	//have to implement this.
     }
@@ -47,7 +47,7 @@ public class UserAccount extends Account {
     }
     
     public void followUser(UserAccount user) {
-    	//tobeimplemented.
+    	Followers.add(user);
     }
     
     
