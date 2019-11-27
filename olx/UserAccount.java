@@ -4,22 +4,51 @@ import java.util.Date;
 import java.util.List;
 
 public class UserAccount extends Account {
-   Boolean unReadMessages;
+   Boolean hasUnreadMessages;
+   Boolean hasUnopenedUpdates;
    Location loc;
    List<Advertisement> published;
    List<Advertisement> likedAds;
-   List<Report> Reported;
+   List<Report> reportedAds;
    List<UserAccount> Followers;
    List<Chat> ChatsInitiated;
 
-    public UserAccount(String name, Date joinDate, String email, String phoneNumber, String password, OLX app, Boolean unReadMessages, Location loc, List<Advertisement> published, List<Advertisement> likedAds, List<Report> reported, List<UserAccount> followers, List<Chat> chatsInitiated) {
+    public UserAccount(String name, Date joinDate, String email, String phoneNumber, String password, OLX app, boolean unReadMessages, boolean hasUnopenedUpdates, Location loc, List<Advertisement> published, List<Advertisement> likedAds, List<Report> reported, List<UserAccount> followers, List<Chat> chatsInitiated) {
         super(name, joinDate, email, phoneNumber, password);
-        this.unReadMessages = unReadMessages;
+        this.hasUnreadMessages = unReadMessages;
+        this.hasUnopenedUpdates = hasUnopenedUpdates;
         this.loc = loc;
         this.published = published;
         this.likedAds = likedAds;
-        Reported = reported;
+        reportedAds = reported;
         Followers = followers;
         ChatsInitiated = chatsInitiated;
     }
+    
+    public Advertisement postAdvertisement() {
+    	return null;
+    	//have to implement this.
+    }
+    
+    public void likeAdvertisement(Advertisement ad) {
+    	likedAds.add(ad);
+    }
+    
+    public void reportAdvertisement(Report report) {
+    	reportedAds.add(report);
+    }
+    
+    public void deleteAdvertisement() {
+    	//tobeimplemented.
+    }
+    
+    public void sendMessage(UserAccount account, String message) {
+    	//implemented
+    }
+    
+    public void followUser(UserAccount user) {
+    	//tobeimplemented.
+    }
+    
+    
 }
