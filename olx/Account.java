@@ -30,8 +30,5 @@ public class Account {
 	public String getPassword() {
 		return Password;
 	}
-    
-    
-    
-    
+
 }

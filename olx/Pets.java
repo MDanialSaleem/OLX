@@ -7,4 +7,9 @@ public class Pets extends Advertisement{
         super(views, shares, likes, tittle, price, type, description, status, loc, rep, admin);
         this.breed = breed;
     }
+
+    public void viewAdvertisement(){
+        super.viewAdvertisement();
+        System.out.println("Breed "+breed);
+    }
 }

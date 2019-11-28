@@ -9,4 +9,10 @@ public class Mobile extends Advertisement {
         this.make = make;
         this.condition = condition;
     }
+
+    public void viewAdvertisement(){
+        super.viewAdvertisement();
+        System.out.println("Make "+make);
+        System.out.println("Condition "+condition);
+    }
 }

@@ -9,4 +9,12 @@ public class House extends Property {
         NoOfBedrooms = noOfBedrooms;
         NoOfBathrooms = noOfBathrooms;
     }
+
+    @override
+    public void viewAdvertisement(){
+        super.viewAdvertisement();
+        System.out.println("Bedrooms "+NoOfBedrooms);
+        System.out.println("Bathrooms "+NoOfBathrooms);
+
+    }
 }

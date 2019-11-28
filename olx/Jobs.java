@@ -11,4 +11,10 @@ public class Jobs extends Advertisement {
         this.companyName = companyName;
         Description = description1;
     }
+
+    public void viewAdvertisement(){
+        super.viewAdvertisement();
+        System.out.println("Number of Positions "+noOfPositions);
+        System.out.println("Company Name "+companyName);
+    }
 }

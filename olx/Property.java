@@ -9,4 +9,10 @@ public class Property extends Advertisement{
         AreaUnits = areaUnits;
         PropertyType = propertyType;
     }
+
+    public void viewAdvertisement(){
+        super.viewAdvertisement();
+        System.out.println("AreaUnits "+AreaUnits);
+        System.out.println("Property "+PropertyType);
+    }
 }

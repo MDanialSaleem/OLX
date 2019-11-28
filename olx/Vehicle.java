@@ -19,4 +19,14 @@ public class Vehicle extends Advertisement {
         this.fuel = fuel;
         this.KMdriven = KMdriven;
     }
+
+    public void viewAdvertisement(){
+        super.viewAdvertisement();
+        System.out.println("Make "+make);
+        System.out.println("Condition "+condition);
+        System.out.println("Registeration date "+registeration);
+        System.out.println("Fuel "+fuel);
+        System.out.println("Km Drivern "+KMdriven);
+
+    }
 }
