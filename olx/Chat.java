@@ -29,4 +29,15 @@ public class Chat {
 		}
 	}
 	
+	public UserAccount[] getParticipants() {
+		UserAccount[] temp = new UserAccount[2];
+		for(int i =0; i<2;i++)
+		{
+			temp[i] = participants[i];
+		}
+		return temp;
+		}
+		
+	}
+	
 }

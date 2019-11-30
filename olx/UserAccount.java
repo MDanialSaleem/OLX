@@ -66,9 +66,22 @@ public class UserAccount extends Account {
     }
 
     public void sendMessage(UserAccount account, String message) {
+    	Chat exists = null;
     	for(Chat chat : ChatsInitiated) {
-    		if()
+    		for(int i =0; i < chat.getParticipants().length; i++) {
+    			if(account.equals(chat.getParticipants()[i])) {
+    				exists = chat;
+    			}
+    		}
+    		if(exists != null) {
+    			break;
+    		}
     	}
+    	
+    	if(exists == null) {
+    		exists = new Chat(this, account);
+    	}
+    	exists.addMessage(message, this);
     }
 
     public void followUser(UserAccount user) {
