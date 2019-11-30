@@ -1,16 +1,18 @@
 package olx;
 
+import java.util.List;
+
 public class House extends Property {
     int NoOfBedrooms;
     int NoOfBathrooms;
 
-    public House(int views, int shares, int likes, int tittle, int price, String type, String description, String status, Location loc, Report rep, SessionUser admin, int areaUnits, String propertyType, int noOfBedrooms, int noOfBathrooms) {
-        super(views, shares, likes, tittle, price, type, description, status, loc, rep, admin, areaUnits, propertyType);
+    public House(int views, int shares, int likes, String tittle, int price, String type, String description, String status, Location loc, List<Report> rep, AdminAccount admin, UserAccount creator, int areaUnits, String propertyType, int noOfBedrooms, int noOfBathrooms) {
+        super(views, shares, likes, tittle, price, type, description, status, loc, rep, admin,creator, areaUnits, propertyType);
         NoOfBedrooms = noOfBedrooms;
         NoOfBathrooms = noOfBathrooms;
     }
 
-    @override
+    @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
         System.out.println("Bedrooms "+NoOfBedrooms);

@@ -18,7 +18,9 @@ public class OLX {
     private SessionState sessionState = null;
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
     private List<Location> locations = new ArrayList<>();
-    private List<Account> accounts = new ArrayList<>();
+    @SuppressWarnings("unused")
+	private List<Account> accounts = new ArrayList<>();
+    @SuppressWarnings("unused")
     private Account activeAccount = null;
     
     private OLX(){};

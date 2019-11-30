@@ -3,7 +3,7 @@ package olx;
 public abstract class Filter<T extends Comparable<T>> {
 	private String name;
 
-	Filter(String name){
+	public Filter(String name){
 		this.name = name;
 	}
 	public String getName() {
