@@ -107,6 +107,25 @@ public class UserAccount extends Account {
     }
     
     
+    public void notiftyUserOfFollowerUpdate() {
+    	this.hasUnopenedUpdates = true;
+    }
+    
+    public void notifyFollowers() {
+    	for(UserAccount follower : Followers) {
+    		follower.notiftyUserOfFollowerUpdate();
+    	}
+    }
+    
+    public void viewChats() {
+    	this.hasUnreadMessages = false;
+    	//implement view here.
+    }
+    
+    public void viewFollowerAds() {
+    	this.hasUnopenedUpdates = false;
+    	//implement view here.
+    }
     
     
 

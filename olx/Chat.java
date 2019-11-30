@@ -38,6 +38,5 @@ public class Chat {
 		return temp;
 		}
 		
-	}
-	
 }
+	
