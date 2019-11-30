@@ -16,6 +16,18 @@ public class Advertisement {
     AdminAccount admin;
     UserAccount creator;
 
+    public Advertisement( String tittle, int price, String type, String description, Location loc, UserAccount creator) {
+
+        this.tittle = tittle;
+        this.price = price;
+        this.type = type;
+        this.description = description;
+        this.status =Status.NOT_APPROVED;
+        this.loc = loc;
+        this.creator = creator;
+        reports= new ArrayList<Report>();
+    }
+
     public Advertisement(int views, int shares, int likes, String tittle, int price, String type, String description, Status status, Location loc, List<Report> reports, AdminAccount admin, UserAccount creator) {
         this.views = views;
         this.shares = shares;
@@ -48,11 +60,11 @@ public class Advertisement {
     }
 
     public String share() {
-    	return "return url here";
+        return "return url here";
     }
-    
+
     public void viewAdvertisement() {
-    	System.out.println("Title "+tittle);
+        System.out.println("Title "+tittle);
         System.out.println("Price "+price);
         System.out.println("Type "+type);
         System.out.println("Description "+description);
@@ -60,7 +72,7 @@ public class Advertisement {
         System.out.println("Likes "+likes);
     }
     /*
-    
+
     public void editAdvertisement() {
     	this.viewAdvertisement();
     	//menu for the user
@@ -98,26 +110,26 @@ public class Advertisement {
     }
     */
     public void approveDisapprove(boolean decision) {
-    	status = Status.APPROVED;
+        status = Status.APPROVED;
     }
     public void likeAdvertisement() {
-    	likes++;
+        likes++;
     }
-    
+
     public UserAccount viewSeller() {
-    	return creator;
+        return creator;
     }
-    
+
     public boolean satisfyQuery(QueryBuilder builder) {
-    	for(Filter<Integer> filter : builder.getIntFilters()) {
-    		if(filter.getName().equalsIgnoreCase("Price")) {
-    			return filter.check(price);
-    		}
-    	}
-    	//in case there is no fitler of importance.
-    	return true;
+        for(Filter<Integer> filter : builder.getIntFilters()) {
+            if(filter.getName().equalsIgnoreCase("Price")) {
+                return filter.check(price);
+            }
+        }
+        //in case there is no fitler of importance.
+        return true;
     }
-    
-    
-    
+
+
+
 }

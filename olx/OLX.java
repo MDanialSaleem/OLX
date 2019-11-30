@@ -1,7 +1,6 @@
 package olx;
 
 
-
 import java.time.LocalDate;
 
 import java.util.*;
@@ -19,10 +18,10 @@ public class OLX {
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
     private List<Location> locations = new ArrayList<>();
     @SuppressWarnings("unused")
-	private List<Account> accounts = new ArrayList<>();
+    private List<Account> accounts = new ArrayList<>();
     @SuppressWarnings("unused")
     private Account activeAccount = null;
-    
+
     private OLX(){};
     public static OLX getInstance(){
         if(instance==null)
@@ -33,20 +32,21 @@ public class OLX {
     {
         sessionState=s;
     }
-    
-    
+
+
     public void addLocation(Location loc) {
-    	locations.add(loc);
+        locations.add(loc);
     }
-    
+
     public List<Advertisement> search(String keyword) {
-    	throw new IllegalStateException();
+        throw new IllegalStateException();
     }
-    
+
     public void addAdvertisement(Advertisement ad) {
-    	advertisements.add(ad);
+        advertisements.add(ad);
     }
-    
+
+
     public void registerUser() {
         String name = textIO.newStringInputReader().withMinLength(1).read("Username");
 
@@ -58,38 +58,60 @@ public class OLX {
 
         String phone = textIO.newStringInputReader().withMinLength(11).read("Phone Number");
 
-        //Account a=new UserAccount(name,now,email,phone,password);
+
+        String Block = textIO.newStringInputReader().read("Block");
+        String SocietyName = textIO.newStringInputReader().withMinLength(1).read("Society Name");
+        String City= textIO.newStringInputReader().withMinLength(1).read(" City");
+        String State= textIO.newStringInputReader().withMinLength(1).read("State");
+
+        Location loc = new Location(Block,SocietyName,City,State);
+
+        boolean found=false;
+        for(Location l : this.locations){
+            if(l.equals(loc))
+            {
+                loc=l;
+                found=true;
+            }
+        }
+        if(!found){
+            locations.add(loc);
+        }
+        UserAccount a=new UserAccount(name,now,email,phone,password,this,loc);
+        loc.adduAcc(a);
+
     }
-    
+
     public boolean logInUser() {
-    	return sessionState.logInUser();
+        return sessionState.logInUser();
     }
     public void logOutUser() {
-    	sessionState.logOut();
+        sessionState.logOut();
     }
-    
+
     public UserAccount getCurrentUserAccount() {
-    	return sessionState.getCurrentUserAccount();
+        return sessionState.getCurrentUserAccount();
     }
     public AdminAccount getCurrentAdminAccount() {
-    	return sessionState.getCurrentAdminAccount();
+        return sessionState.getCurrentAdminAccount();
     }
-    
+
     public boolean logInAdmin() {
-    	return sessionState.loginAdmin();
+        return sessionState.loginAdmin();
     }
-    
+
     public void setActiveAccount(Account account) {
-    	activeAccount = account;
+        activeAccount = account;
     }
-    
+
     public void deleteAd(Advertisement ad) {
-    	advertisements.remove(ad);
+        advertisements.remove(ad);
     }
-    
+
     public SessionUser getAdminForApproval() {
-    	return null; //BIG BIG ISSUES HERE.
+        return null; //BIG BIG ISSUES HERE.
     }
-    
-    
+
+
+
 }
