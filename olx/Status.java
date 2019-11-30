@@ -1,5 +1,5 @@
 package olx;
 
 public enum Status {
-APPROVED, NOT_APPROVED
+APPROVED, NOT_APPROVED, WAITING
 }

@@ -117,8 +117,14 @@ public class Advertisement {
 
     }
 
-    public void approveDisapprove(boolean decision) {
-        status = Status.APPROVED;
+    public void approveDisapprove(boolean decision, AdminAccount judge) {
+    	this.admin = judge;
+		if(decision) {
+			this.status = Status.APPROVED;
+		}
+		else {
+			this.status = Status.NOT_APPROVED;
+		}
     }
     public void likeAdvertisement() {
         likes++;
@@ -138,6 +144,94 @@ public class Advertisement {
         return true;
     }
 
+	public int getViews() {
+		return views;
+	}
+
+	public void setViews(int views) {
+		this.views = views;
+	}
+
+	public int getShares() {
+		return shares;
+	}
+
+	public void setShares(int shares) {
+		this.shares = shares;
+	}
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Location getLoc() {
+		return loc;
+	}
+
+	public void setLoc(Location loc) {
+		this.loc = loc;
+	}
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+
+	public AdminAccount getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(AdminAccount admin) {
+		this.admin = admin;
+	}
+
+	public UserAccount getCreator() {
+		return creator;
+	}
+
+	public void setCreator(UserAccount creator) {
+		this.creator = creator;
+	}
+
+	public TextIO getTextIO() {
+		return textIO;
+	}
+
+	public void setTextIO(TextIO textIO) {
+		this.textIO = textIO;
+	}
+
+	public String getTittle() {
+		return tittle;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+    
 
 
 }
