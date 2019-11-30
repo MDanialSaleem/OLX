@@ -11,4 +11,19 @@ public class Electronics extends Advertisement {
         this.condition = condition;
         Make = make;
     }
+    
+    @Override
+    public boolean satisfyQuery(QueryBuilder builder) {
+    	
+    	boolean satisfies = true;
+    	for(Filter<String> filter : builder.getStringFilters()) {
+    		if(filter.getName().equalsIgnoreCase("Condition")) {
+    			satisfies = satisfies && filter.check(this.condition.name());
+    		}
+    		if(filter.getName().equalsIgnoreCase("Make")) {
+    			satisfies = satisfies && filter.check(this.Make);
+    		}
+    	}
+    	return satisfies && super.satisfyQuery(builder);
+    }
 }

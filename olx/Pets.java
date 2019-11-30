@@ -14,4 +14,16 @@ public class Pets extends Advertisement{
         super.viewAdvertisement();
         System.out.println("Breed "+breed);
     }
+    
+    @Override
+    public boolean satisfyQuery(QueryBuilder builder) {
+    	
+    	boolean satisfies = true;
+    	for(Filter<String> filter : builder.getStringFilters()) {
+    		if(filter.getName().equalsIgnoreCase("breed")) {
+    			satisfies = satisfies && filter.check(breed);
+    		}
+    	}
+    	return satisfies && super.satisfyQuery(builder);
+    }
 }

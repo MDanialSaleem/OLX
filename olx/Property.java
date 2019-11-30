@@ -17,4 +17,16 @@ public class Property extends Advertisement{
         System.out.println("AreaUnits "+AreaUnits);
         System.out.println("Property "+propertyType);
     }
+    @Override
+    public boolean satisfyQuery(QueryBuilder builder) {
+    	
+    	boolean satisfies = true;
+    	for(Filter<String> filter : builder.getStringFilters()) {
+    		if(filter.getName().equalsIgnoreCase("PropertyType")) {
+    			satisfies = satisfies && filter.check(this.propertyType.name());
+    		}
+    	}
+    	return satisfies && super.satisfyQuery(builder);
+    }
+    
 }

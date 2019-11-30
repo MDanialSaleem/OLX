@@ -30,4 +30,29 @@ public class Vehicle extends Advertisement {
         System.out.println("Km Drivern "+KMdriven);
 
     }
+    @Override
+    public boolean satisfyQuery(QueryBuilder builder) {
+    	
+    	boolean satisfies = true;
+    	for(Filter<String> filter : builder.getStringFilters()) {
+    		if(filter.getName().equalsIgnoreCase("Condition")) {
+    			satisfies = satisfies && filter.check(this.condition.name());
+    		}
+    		if(filter.getName().equalsIgnoreCase("Make")) {
+    			satisfies = satisfies && filter.check(this.make);
+    		}
+    		if(filter.getName().equalsIgnoreCase("Fuel")) {
+    			satisfies = satisfies && filter.check(this.fuel.name());
+    		}
+    	}
+    	for(Filter<Integer> filter : builder.getIntFilters()) {
+    		if(filter.getName().equalsIgnoreCase("KMDriven")) {
+    			satisfies = satisfies && filter.check((int)this.KMdriven);
+    		}
+    		if(filter.getName().equalsIgnoreCase("Year")) {
+    			satisfies = satisfies && filter.check(year);
+    		}
+    	}
+    	return satisfies && super.satisfyQuery(builder);
+    }
 }
