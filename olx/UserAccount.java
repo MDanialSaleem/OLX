@@ -2,7 +2,7 @@ package olx;
 
 import java.util.Date;
 import java.util.List;
-
+import java.time.LocalDate;
 public class UserAccount extends Account {
    Boolean hasUnreadMessages;
    Boolean hasUnopenedUpdates;
@@ -13,7 +13,7 @@ public class UserAccount extends Account {
    List<UserAccount> Followers;
    List<Chat> ChatsInitiated;
 
-    public UserAccount(String name, Date joinDate, String email, String phoneNumber, String password, OLX app, boolean unReadMessages, boolean hasUnopenedUpdates, Location loc, List<Advertisement> published, List<Advertisement> likedAds, List<Report> reported, List<UserAccount> followers, List<Chat> chatsInitiated) {
+    public UserAccount(String name, LocalDate joinDate, String email, String phoneNumber, String password, OLX app, boolean unReadMessages, boolean hasUnopenedUpdates, Location loc, List<Advertisement> published, List<Advertisement> likedAds, List<Report> reported, List<UserAccount> followers, List<Chat> chatsInitiated) {
         super(name, joinDate, email, phoneNumber, password);
         this.hasUnreadMessages = unReadMessages;
         this.hasUnopenedUpdates = hasUnopenedUpdates;

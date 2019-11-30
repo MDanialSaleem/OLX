@@ -1,14 +1,14 @@
 package olx;
 
 import java.util.Date;
-
+import java.time.LocalDate;
 public class Account {
     String Name;
-    Date JoinDate;
+	LocalDate JoinDate;
     String Email;
     String PhoneNumber;
     String Password;
-    public Account(String name, Date joinDate, String email, String phoneNumber, String password) {
+    public Account(String name, LocalDate joinDate, String email, String phoneNumber, String password) {
         Name = name;
         JoinDate = joinDate;
         Email = email;
@@ -18,7 +18,7 @@ public class Account {
 	public String getName() {
 		return Name;
 	}
-	public Date getJoinDate() {
+	public LocalDate getJoinDate() {
 		return JoinDate;
 	}
 	public String getEmail() {

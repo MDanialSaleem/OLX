@@ -1,9 +1,20 @@
 package olx;
 
+
+
+import java.time.LocalDate;
+
 import java.util.*;
+import org.slf4j.*;
+
+
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
 
 public class OLX {
-    private OLX instance=null;
+    TextIO textIO = TextIoFactory.getTextIO();
+
+    private static OLX instance=null;
     private SessionState sessionState = null;
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
     private List<Location> locations = new ArrayList<>();
@@ -11,7 +22,7 @@ public class OLX {
     private Account activeAccount = null;
     
     private OLX(){};
-    public OLX getInstance(){
+    public static OLX getInstance(){
         if(instance==null)
             instance=new OLX();
         return instance;
@@ -35,7 +46,17 @@ public class OLX {
     }
     
     public void registerUser() {
-    	throw new IllegalStateException();
+        String name = textIO.newStringInputReader().withMinLength(1).read("Username");
+
+        String password = textIO.newStringInputReader().withMinLength(8).withInputMasking(true).read("Password");
+
+        String email = textIO.newStringInputReader().withMinLength(8).read("Email");
+
+        LocalDate now = LocalDate.now();
+
+        String phone = textIO.newStringInputReader().withMinLength(11).read("Phone Number");
+
+        Account a=new UserAccount(name,now,email,phone,password);
     }
     
     public boolean logInUser() {
