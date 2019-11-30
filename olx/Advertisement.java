@@ -2,6 +2,13 @@ package olx;
 
 import java.util.*;
 
+import org.slf4j.*;
+
+
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
+
+
 public class Advertisement {
     int views;
     int shares;
@@ -15,6 +22,8 @@ public class Advertisement {
     List<Report> reports;
     AdminAccount admin;
     UserAccount creator;
+
+    TextIO textIO = TextIoFactory.getTextIO();
 
     public Advertisement( String tittle, int price, String type, String description, Location loc, UserAccount creator) {
 
@@ -71,44 +80,43 @@ public class Advertisement {
         System.out.println("Views "+views);
         System.out.println("Likes "+likes);
     }
-    /*
+
 
     public void editAdvertisement() {
-    	this.viewAdvertisement();
-    	//menu for the user
-    	System.out.println("Press 1 in order to edit title");
+        this.viewAdvertisement();
+        //menu for the user
+        System.out.println("Press 1 in order to edit title");
         System.out.println("Press 2 in order to edit price");
         System.out.println("Press 3 in order to edit description");
-        System.out.println("Press 4 in order to edit type");
+        System.out.println("Press 0 in order to exit");
+
         //taking user input
-    	Scanner input=new Scanner(System.in);
-    	int inserted=input.nextInt();
-    	switch (inserted){
+
+
+
+
+        int inserted=textIO.newIntInputReader().withMinVal(0).withMaxVal(3).read("Enter Your Option");
+        switch (inserted){
             case 1 :
-                System.out.println("Enter title");
-                String s = input.next();
-                this.setTittle(s);
+                String t = textIO.newStringInputReader().withMinLength(1).read("Title");
+                this.setTittle(t);
                 break;
             case 2 :
-                System.out.println("Enter price");
-                int s = input.nextInt();
-                this.setPrice(s);
+                int p= textIO.newIntInputReader().read("Price");
+                this.setPrice(p);
                 break;
             case 3 :
-                System.out.println("Enter description");
-                String s = input.next();
-                this.setDescription(s);
+                String descr = textIO.newStringInputReader().withMinLength(1).read("Description");
+                this.setDescription(descr);
                 break;
-            case 4 :
-                System.out.println("Enter type");
-                String s = input.next();
-                this.setType(s);
+
+            case 0:
                 break;
         }
 
 
     }
-    */
+
     public void approveDisapprove(boolean decision) {
         status = Status.APPROVED;
     }
