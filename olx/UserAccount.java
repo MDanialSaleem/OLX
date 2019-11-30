@@ -66,13 +66,18 @@ public class UserAccount extends Account {
     }
 
     public void sendMessage(UserAccount account, String message) {
-        //implemented
+    	for(Chat chat : ChatsInitiated) {
+    		if()
+    	}
     }
 
     public void followUser(UserAccount user) {
-        Followers.add(user);
+    	user.addFollower(this);
     }
 
+    public void addFollower(UserAccount user) {
+    	Followers.add(user);
+    }
     public void createAdvertisement(){
 
         String title = textIO.newStringInputReader().withMinLength(1).read("Title");
@@ -83,5 +88,13 @@ public class UserAccount extends Account {
         Advertisement ad= new Advertisement(title, price,type,description, this.loc, this) ;
 
     }
+    
+    public void notifyUserOfMessage() {
+    	this.hasUnreadMessages = true;
+    }
+    
+    
+    
+    
 
 }

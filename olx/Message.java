@@ -1,15 +1,15 @@
 package olx;
 
-import java.sql.Timestamp;
+import java.time.*;
 
 public class Message {
-    Timestamp time;
+    LocalDateTime time;
     String text;
-    UserAccount account;
+    UserAccount sender;
 
-    public Message(Timestamp time, String text, UserAccount account) {
-        this.time = time;
+    public Message(String text, UserAccount sender) {
         this.text = text;
-        this.account = account;
+        this.sender = sender;
+        time = LocalDateTime.now();
     }
 }
