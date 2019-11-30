@@ -6,6 +6,9 @@ public class QueryBuilder {
 	List<Filter<? extends Comparable<?>>> filters = new ArrayList<>();
 	List<Advertisement> results;
 	
+	public QueryBuilder() {
+		
+	}
 	public QueryBuilder(List<Advertisement> initialResults) {
 		results = initialResults; 
 		//It may look like copying the list here is necessary but it is not because the filter methods do not modify 
@@ -15,7 +18,7 @@ public class QueryBuilder {
 	private void apply() {
 		
 	}
-	public void addIntFilter(Filter<? extends Comparable<?>> filter) {
+	public void addFilter(Filter<? extends Comparable<?>> filter) {
 		filters.add(filter);
 		apply();
 	}

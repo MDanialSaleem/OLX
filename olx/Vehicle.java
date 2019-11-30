@@ -11,7 +11,7 @@ public class Vehicle extends Advertisement {
     String fuel;
     float KMdriven;
 
-    public Vehicle(int views, int shares, int likes, int tittle, int price, String type, String description, String status, Location loc, List<Report> rep, AdminAccount admin, UserAccount creator, String make, int year, String condition, Date registeration, String fuel, float KMdriven) {
+    public Vehicle(int views, int shares, int likes, String tittle, int price, String type, String description, String status, Location loc, List<Report> rep, AdminAccount admin, UserAccount creator, String make, int year, String condition, Date registeration, String fuel, float KMdriven) {
         super(views, shares, likes, tittle, price, type, description, status, loc, rep, admin, creator);
         this.make = make;
         this.year = year;

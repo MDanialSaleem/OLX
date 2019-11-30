@@ -6,7 +6,7 @@ public class Advertisement {
     int views;
     int shares;
     int likes;
-    int tittle;
+    String tittle;
     int price;
     String type;
     String description;
@@ -16,7 +16,7 @@ public class Advertisement {
     AdminAccount admin;
     UserAccount creator;
 
-    public Advertisement(int views, int shares, int likes, int tittle, int price, String type, String description, String status, Location loc, List<Report> reports, AdminAccount admin, UserAccount creator) {
+    public Advertisement(int views, int shares, int likes, String tittle, int price, String type, String description, String status, Location loc, List<Report> reports, AdminAccount admin, UserAccount creator) {
         this.views = views;
         this.shares = shares;
         this.likes = likes;
@@ -31,7 +31,7 @@ public class Advertisement {
         this.reports = reports;
     }
 
-    public void setTittle(int tittle) {
+    public void setTittle(String tittle) {
         this.tittle = tittle;
     }
 
@@ -59,6 +59,7 @@ public class Advertisement {
         System.out.println("Views "+views);
         System.out.println("Likes "+likes);
     }
+    /*
     
     public void editAdvertisement() {
     	this.viewAdvertisement();
@@ -95,7 +96,7 @@ public class Advertisement {
 
 
     }
-    
+    */
     public void approveDisapprove(boolean decision) {
     	status = "Approved";
     }

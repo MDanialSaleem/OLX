@@ -7,16 +7,17 @@ public class RangeFilter<T extends Comparable<T>> extends Filter<T>{
 	T low;
 	public RangeFilter(String name, T low, T up) {
 		super(name);
+		if(low.compareTo(up) > 0) {
+			throw new IllegalArgumentException();
+		}
 		this.low = low;
 		this.up = up;
 	}
 	
 	
 	public boolean check(T value) {
-		int upcmp = up.compareTo(value);
-		int lowcmp = low.compareTo(value);
 		
-		return lowcmp >=0 && upcmp <= 0;
+		return value.compareTo(low) >=0 && value.compareTo(up) <= 0;
 	}
 	
 }
