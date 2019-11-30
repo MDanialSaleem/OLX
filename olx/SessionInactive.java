@@ -14,13 +14,13 @@ public class SessionInactive extends SessionState {
 
 	@Override
 	public boolean logInUser() {
-		// TODO Auto-generated method stub
+		//TAKE APPRORIATE INPUT AND SET APPROPIATE STATE. (WHICH I NO DO IN LAB FINAL SO I GET A D+)
 		return false;
 	}
 
 	@Override
 	public boolean loginAdmin() {
-		// TODO Auto-generated method stub
+		//TAKE APPRORIATE INPUT AND SET APPROPIATE STATE. (WHICH I NO DO IN LAB FINAL SO I GET A D+)
 		return false;
 	}
 

@@ -21,7 +21,7 @@ public class OLX {
     private List<Account> accounts = new ArrayList<>();
     @SuppressWarnings("unused")
     private Account activeAccount = null;
-
+    
     private OLX(){};
     public static OLX getInstance(){
         if(instance==null)
@@ -103,6 +103,9 @@ public class OLX {
     public void setActiveAccount(Account account) {
         activeAccount = account;
     }
+    public Account getActiveAccount() {
+    	return activeAccount;
+    }
 
     public void deleteAd(Advertisement ad) {
         advertisements.remove(ad);
@@ -111,7 +114,7 @@ public class OLX {
     public SessionUser getAdminForApproval() {
         return null; //BIG BIG ISSUES HERE.
     }
-
+    
 
 
 }

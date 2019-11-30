@@ -4,32 +4,28 @@ public class SessionAdmin extends SessionState {
 
 	@Override
 	public UserAccount getCurrentUserAccount() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AdminAccount getCurrentAdminAccount() {
-		// TODO Auto-generated method stub
-		return null;
+		return (AdminAccount)(OLX.getInstance().getActiveAccount());
 	}
 
 	@Override
 	public boolean logInUser() {
-		// TODO Auto-generated method stub
-		return false;
+		throw new IllegalStateException();
 	}
 
 	@Override
 	public boolean loginAdmin() {
-		// TODO Auto-generated method stub
-		return false;
+		throw new IllegalStateException();
 	}
 
 	@Override
 	public void logOut() {
-		// TODO Auto-generated method stub
-		
+		OLX.getInstance().setActiveAccount(null);
+		OLX.getInstance().setState(new SessionInactive());
 	}
 	
 }

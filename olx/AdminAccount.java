@@ -45,14 +45,14 @@ public class AdminAccount extends Account {
 	public void decideApproval(Advertisement ad) {
 		ad.viewAdvertisement();
 		boolean approval = true; //TAKE THIS INUT FROM USER.
-		ad.approveDisapprove(approval);
+		ad.approveDisapprove(approval, this);
 		adsWaitingList.remove(ad);
 	}
 	
 	public void decideReport(Report report) {
 		report.viewReport();
 		boolean decision = true; //TAKE THIS INPUT FROM USER.
-		report.decideReport(decision);
+		report.decideReport(decision, this);
 		reportsWaitingList.remove(report);
 	}
 	

@@ -41,12 +41,6 @@ public class Report {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	public UserAccount getAccount() {
-		return account;
-	}
-	public void setAccount(UserAccount account) {
-		this.account = account;
-	}
 	public Advertisement getAd() {
 		return ad;
 	}

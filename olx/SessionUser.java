@@ -4,8 +4,7 @@ public class SessionUser extends SessionState {
 
 	@Override
 	public UserAccount getCurrentUserAccount() {
-		// TODO Auto-generated method stub
-		return null;
+		return (UserAccount)(OLX.getInstance().getActiveAccount());
 	}
 
 	@Override
@@ -25,7 +24,8 @@ public class SessionUser extends SessionState {
 
 	@Override
 	public void logOut() {
-		//do logout here.
+		OLX.getInstance().setActiveAccount(null);
+		OLX.getInstance().setState(new SessionInactive());
 		
 	}
 	
