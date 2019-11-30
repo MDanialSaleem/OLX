@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Mobile extends Advertisement {
     String make;
-    String condition;
+    Condition condition;
 
-    public Mobile(int views, int shares, int likes, String tittle, int price, String type, String description, String status, Location loc, List<Report> rep, AdminAccount admin, UserAccount creator, String make, String condition) {
+    public Mobile(int views, int shares, int likes, String tittle, int price, String type, String description, Status status, Location loc, List<Report> rep, AdminAccount admin, UserAccount creator, String make, Condition condition) {
         super(views, shares, likes, tittle, price, type, description, status, loc, rep, admin, creator);
         this.make = make;
         this.condition = condition;

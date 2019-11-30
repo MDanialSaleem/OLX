@@ -3,7 +3,9 @@ package olx;
 import java.util.*;
 
 public class QueryBuilder {
-	List<Filter<? extends Comparable<?>>> filters = new ArrayList<>();
+	List<Filter<Integer>> intFilters = new ArrayList<>();
+	List<Filter<String>> stringFilters = new ArrayList<>();
+
 	List<Advertisement> results;
 	
 	public QueryBuilder() {
@@ -18,18 +20,27 @@ public class QueryBuilder {
 	private void apply() {
 		
 	}
-	public void addFilter(Filter<? extends Comparable<?>> filter) {
-		filters.add(filter);
+	public void addIntFilter(Filter<Integer> filter) {
+		intFilters.add(filter);
 		apply();
 	}
-	public void removeFilter(Filter<? extends Comparable<?>> filter)
-	{
-		filters.remove(filter);
+	public void addStringFilter(Filter<String> filter) {
+		stringFilters.add(filter);
 		apply();
 	}
 	
 	
 	
+	public List<Filter<Integer>> getIntFilters() {
+		return intFilters;
+	}
+	public List<Filter<String>> getStringFilters() {
+		return stringFilters;
+	}
+	
+	public List<Advertisement> getResults() {
+		return results;
+	}
 	public void sortByPrice() {
 		//tobeimplemened.
 	}

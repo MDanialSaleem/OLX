@@ -10,13 +10,13 @@ public class Advertisement {
     int price;
     String type;
     String description;
-    String status;
+    Status status;
     Location loc;
     List<Report> reports;
     AdminAccount admin;
     UserAccount creator;
 
-    public Advertisement(int views, int shares, int likes, String tittle, int price, String type, String description, String status, Location loc, List<Report> reports, AdminAccount admin, UserAccount creator) {
+    public Advertisement(int views, int shares, int likes, String tittle, int price, String type, String description, Status status, Location loc, List<Report> reports, AdminAccount admin, UserAccount creator) {
         this.views = views;
         this.shares = shares;
         this.likes = likes;
@@ -98,7 +98,7 @@ public class Advertisement {
     }
     */
     public void approveDisapprove(boolean decision) {
-    	status = "Approved";
+    	status = Status.APPROVED;
     }
     public void likeAdvertisement() {
     	likes++;
@@ -109,7 +109,12 @@ public class Advertisement {
     }
     
     public boolean satisfyQuery(QueryBuilder builder) {
-    	//TOBEIMPLEMNTED
+    	for(Filter<Integer> filter : builder.getIntFilters()) {
+    		if(filter.getName().equalsIgnoreCase("Price")) {
+    			return filter.check(price);
+    		}
+    	}
+    	//in case there is no fitler of importance.
     	return true;
     }
     

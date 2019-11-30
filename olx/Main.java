@@ -7,8 +7,8 @@ public class Main {
     	QueryBuilder builder = new QueryBuilder();
     	Filter<Integer> filter1 = new RangeFilter<>("Pirce", 100, 200);
     	Filter<String> filter2 = new EqualityFilter<>("Category", "Pets");
-    	builder.addFilter(filter1);
-    	builder.addFilter(filter2);
+    	builder.addIntFilter(filter1);
+    	builder.addStringFilter(filter2);
     	
     	System.out.println(filter1.check(220));
     	System.out.println(filter2.check("Pets"));

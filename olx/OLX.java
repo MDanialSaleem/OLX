@@ -58,7 +58,7 @@ public class OLX {
 
         String phone = textIO.newStringInputReader().withMinLength(11).read("Phone Number");
 
-        Account a=new UserAccount(name,now,email,phone,password);
+        //Account a=new UserAccount(name,now,email,phone,password);
     }
     
     public boolean logInUser() {

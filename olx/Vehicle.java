@@ -6,12 +6,12 @@ import java.util.List;
 public class Vehicle extends Advertisement {
     String make;
     int year;
-    String condition;
+    Condition condition;
     Date registeration;
-    String fuel;
+    Fuel fuel;
     float KMdriven;
 
-    public Vehicle(int views, int shares, int likes, String tittle, int price, String type, String description, String status, Location loc, List<Report> rep, AdminAccount admin, UserAccount creator, String make, int year, String condition, Date registeration, String fuel, float KMdriven) {
+    public Vehicle(int views, int shares, int likes, String tittle, int price, String type, String description, Status status, Location loc, List<Report> rep, AdminAccount admin, UserAccount creator, String make, int year, Condition condition, Date registeration, Fuel fuel, float KMdriven) {
         super(views, shares, likes, tittle, price, type, description, status, loc, rep, admin, creator);
         this.make = make;
         this.year = year;
