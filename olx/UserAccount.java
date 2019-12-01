@@ -109,10 +109,6 @@ public class UserAccount extends Account {
     }
 
     public void viewChats() {
-<<<<<<< HEAD
-        this.hasUnreadMessages = false;
-        //implement view here.
-=======
     	this.hasUnreadMessages = false;
     	//implement view here.
         int i=0;
@@ -142,17 +138,13 @@ public class UserAccount extends Account {
           i++;
         }
       
->>>>>>> 1ff1daca23a4bbf44ceb0cde1b6ea1bd74e475bb
     }
 
     public void viewFollowerAds() {
         this.hasUnopenedUpdates = false;
         //implement view here.
     }
-<<<<<<< HEAD
-=======
     
->>>>>>> 1ff1daca23a4bbf44ceb0cde1b6ea1bd74e475bb
 
     public void createAdvertisement() {
 
