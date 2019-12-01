@@ -1,4 +1,4 @@
-package olx;
+package com.company;
 
 public class Report {
     private String content;
@@ -57,9 +57,17 @@ public class Report {
 			this.status = Status.NOT_APPROVED;
 		}
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Report{" +
+				"content='" + content + '\'' +
+				", category='" + category + '\'' +
+				", status=" + status +'}';
+	}
+
 	public void viewReport() {
-		
+		this.toString();
 	}
     
 }

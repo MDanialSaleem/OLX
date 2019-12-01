@@ -1,4 +1,4 @@
-package olx;
+package com.company;
 
 import java.util.Date;
 import java.time.LocalDate;

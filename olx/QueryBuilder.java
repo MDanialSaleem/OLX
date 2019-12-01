@@ -1,4 +1,4 @@
-package olx;
+package com.company;
 
 import java.util.*;
 
@@ -10,7 +10,8 @@ public class QueryBuilder {
 	List<Advertisement> currentResults;
 	
 	public QueryBuilder() {
-		
+		initialResults = new ArrayList<>();
+		currentResults = new ArrayList<>();
 	}
 	public QueryBuilder(List<Advertisement> initialResults) {
 		this.initialResults = initialResults;
@@ -58,6 +59,7 @@ public class QueryBuilder {
 	}
 	public void sortByPrice() {
 		//tobeimplemened.
+		Collections.sort(initialResults, new Sortbyprice());
 	}
 	
 	public void sortByTime() {

@@ -1,4 +1,4 @@
-package olx;
+package com.company;
 
 import java.util.*;
 
@@ -34,6 +34,7 @@ public class Advertisement {
         this.status =Status.NOT_APPROVED;
         this.loc = loc;
         this.creator = creator;
+        this.admin=OLX.getInstance().getAdministrator();
         reports= new ArrayList<Report>();
     }
 
@@ -79,6 +80,18 @@ public class Advertisement {
         System.out.println("Description "+description);
         System.out.println("Views "+views);
         System.out.println("Likes "+likes);
+
+        System.out.println("--------------------------------------------------");
+    }
+
+    class Sortbyprice implements Comparator<Advertisement> 
+    { 
+        // Used for sorting in ascending order of 
+        // price 
+        public int compare(Advertisement a, Advertisement b) 
+        { 
+            return a.price - b.price; 
+        } 
     }
 
 

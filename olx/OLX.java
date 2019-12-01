@@ -1,4 +1,4 @@
-package olx;
+package com.company;
 
 
 import java.time.LocalDate;
@@ -14,14 +14,17 @@ public class OLX {
     TextIO textIO = TextIoFactory.getTextIO();
 
     private static OLX instance=null;
-    private SessionState sessionState = null;
+    private SessionState sessionState = new SessionInactive();
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
     private List<Location> locations = new ArrayList<>();
+    private AdminAccount administrator;
     @SuppressWarnings("unused")
     private List<Account> accounts = new ArrayList<>();
+    public List<Advertisement> getAdvertisements() {
+        return advertisements;
+    }
     @SuppressWarnings("unused")
     private Account activeAccount = null;
-    
     private OLX(){};
     public static OLX getInstance(){
         if(instance==null)
@@ -33,9 +36,16 @@ public class OLX {
         sessionState=s;
     }
 
+    public void setAdministrator(AdminAccount administrator) {
+        this.administrator = administrator;
+    }
 
     public void addLocation(Location loc) {
         locations.add(loc);
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
     }
 
     public List<Advertisement> search(String keyword) {
@@ -45,45 +55,45 @@ public class OLX {
     public void addAdvertisement(Advertisement ad) {
         advertisements.add(ad);
     }
-
-
-    public void registerUser() {
-        String name = textIO.newStringInputReader().withMinLength(1).read("Username");
-
-        String password = textIO.newStringInputReader().withMinLength(8).withInputMasking(true).read("Password");
-
-        String email = textIO.newStringInputReader().withMinLength(8).read("Email");
-
-        LocalDate now = LocalDate.now();
-
-        String phone = textIO.newStringInputReader().withMinLength(11).read("Phone Number");
-
-
-        String Block = textIO.newStringInputReader().read("Block");
-        String SocietyName = textIO.newStringInputReader().withMinLength(1).read("Society Name");
-        String City= textIO.newStringInputReader().withMinLength(1).read(" City");
-        String State= textIO.newStringInputReader().withMinLength(1).read("State");
-
-        Location loc = new Location(Block,SocietyName,City,State);
-
-        boolean found=false;
-        for(Location l : this.locations){
-            if(l.equals(loc))
-            {
-                loc=l;
-                found=true;
-            }
-        }
-        if(!found){
-            locations.add(loc);
-        }
-        UserAccount a=new UserAccount(name,now,email,phone,password,this,loc);
-        loc.adduAcc(a);
-
+    public void addAccount(Account acc) {
+        accounts.add(acc);
     }
 
-    public boolean logInUser() {
-        return sessionState.logInUser();
+    public AdminAccount getAdministrator() {
+        return administrator;
+    }
+
+    public void viewAdvertisements(){
+        for(int i=0;i<advertisements.size();i++){
+            advertisements.get(i).viewAdvertisement();
+        }
+    }
+
+    public boolean registerUser() {
+            System.out.println("----------------------Register Now-----------------");
+            System.out.println("Enter your Name.");
+            String name=userInputText();
+            System.out.println("Enter your email.");
+            String email=userInputText();
+            System.out.println("Enter your phone number.");
+            String phone=userInputText();
+            System.out.println("Enter your password.");
+            String Password=userInputText();
+            System.out.println("Enter your block.");
+            String block=userInputText();
+            System.out.println("Enter your Society.");
+            String Society=userInputText();
+            System.out.println("Enter your city.");
+            String city=userInputText();
+            System.out.println("Enter your state.");
+            String state=userInputText();
+            Location loc=new Location(block,Society,city,state);
+            this.addLocation(loc);
+            this.addAccount(new UserAccount(name, LocalDate.now(),email,phone,Password,this,loc));
+            return sessionState.logInUser();
+    }
+
+    public boolean logInUser() { return sessionState.logInUser();
     }
     public void logOutUser() {
         sessionState.logOut();
@@ -114,7 +124,24 @@ public class OLX {
     public SessionUser getAdminForApproval() {
         return null; //BIG BIG ISSUES HERE.
     }
-    
+
+    static int userInputInt(){
+        Scanner input=new Scanner(System.in);
+        return input.nextInt();
+    }
+
+    static String userInputText(){
+        Scanner input=new Scanner(System.in);
+        return input.next();
+    }
+
+    static Condition userInputCondition(){
+        System.out.println("Enter 1 for New or 2 for used");
+        Scanner input=new Scanner(System.in);
+        int i=input.nextInt();
+        if(i==1){return Condition.NEW;};
+        return Condition.USED;
+    }
 
 
 }
