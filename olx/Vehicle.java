@@ -41,9 +41,7 @@ public class Vehicle extends Advertisement {
     }
 
 
-    public AdminAccount getAdmin() {
-        return super.getAdmin();
-    }
+
 
     @Override
     public void viewAdvertisement(){
