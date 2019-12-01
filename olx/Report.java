@@ -1,4 +1,4 @@
-package com.company;
+package olx;
 
 public class Report {
     private String content;

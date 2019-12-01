@@ -1,4 +1,4 @@
-package com.company;
+package olx;
 
 import java.util.*;
 
