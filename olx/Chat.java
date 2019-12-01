@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 package com.company;
+=======
+package olx;
+import java.time.LocalDateTime;
+>>>>>>> 1ff1daca23a4bbf44ceb0cde1b6ea1bd74e475bb
 import java.util.*;
 
 public class Chat {
@@ -37,6 +42,38 @@ public class Chat {
 		}
 		return temp;
 		}
+        
+        public UserAccount getFirstParticipant() {
+		
+                return participants[0];
+        }
+        public UserAccount getSecoundParticipant() {
+		
+                return participants[1];
+        }
+        public String getLatestMessage()
+        {
+            String getmess=null;
+ 
+            for(Message m1:messages)
+            {
+               getmess=m1.text;
+
+              
+            }
+            return getmess;
+        }
+        public String getTimeOfLatestMessage()
+        {
+             String time=null;
+             for(Message m1:messages)
+            {
+               time=m1.time.toString();
+
+              
+            }           
+             return time;
+        }
 		
 }
 	

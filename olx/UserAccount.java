@@ -108,14 +108,50 @@ public class UserAccount extends Account {
     }
 
     public void viewChats() {
+<<<<<<< HEAD
         this.hasUnreadMessages = false;
         //implement view here.
+=======
+    	this.hasUnreadMessages = false;
+    	//implement view here.
+        int i=0;
+        int getThisPt=0;
+        Message m1;
+        for(Chat getChat:ChatsInitiated)
+        {
+          if(getChat.getFirstParticipant().Name==this.Name)
+          {
+             getThisPt=1;
+          }
+          else if(getChat.getSecoundParticipant().Name==this.Name)
+          {
+              getThisPt=2;
+          }
+          if(getThisPt==1)
+          {
+              System.out.println(i + "- " + getChat.getSecoundParticipant().Name);
+          }
+          else if(getThisPt==2)
+          {
+               System.out.println(i + "- " + getChat.getFirstParticipant().Name);
+          
+          }
+          System.out.println(getChat.getLatestMessage());
+          System.out.println(getChat.getTimeOfLatestMessage());
+          i++;
+        }
+      
+>>>>>>> 1ff1daca23a4bbf44ceb0cde1b6ea1bd74e475bb
     }
 
     public void viewFollowerAds() {
         this.hasUnopenedUpdates = false;
         //implement view here.
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 1ff1daca23a4bbf44ceb0cde1b6ea1bd74e475bb
 
     public void createAdvertisement() {
 

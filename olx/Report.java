@@ -67,7 +67,25 @@ public class Report {
 	}
 
 	public void viewReport() {
+<<<<<<< HEAD
 		this.toString();
+=======
+          System.out.println("The details of Report of the Advertisement : ");  
+            
+	  System.out.println("Content of report: ");
+          System.out.println(content);
+          System.out.println("Category of report: ");
+          System.out.println(category);
+          System.out.println("Status of report: ");
+          System.out.println(status);
+          System.out.println("Title of Advertisement: ");
+          System.out.println(ad.tittle); 
+          System.out.println("Type of Advertisement: ");
+          System.out.println(ad.type);       
+          System.out.println("Description of Advertisement  : ");
+          System.out.println(ad.description);
+           
+>>>>>>> 1ff1daca23a4bbf44ceb0cde1b6ea1bd74e475bb
 	}
     
 }
