@@ -59,7 +59,21 @@ public class Report {
 	}
 	
 	public void viewReport() {
-		
+          System.out.println("The details of Report of the Advertisement : ");  
+            
+	  System.out.println("Content of report: ");
+          System.out.println(content);
+          System.out.println("Category of report: ");
+          System.out.println(category);
+          System.out.println("Status of report: ");
+          System.out.println(status);
+          System.out.println("Title of Advertisement: ");
+          System.out.println(ad.tittle); 
+          System.out.println("Type of Advertisement: ");
+          System.out.println(ad.type);       
+          System.out.println("Description of Advertisement  : ");
+          System.out.println(ad.description);
+           
 	}
     
 }

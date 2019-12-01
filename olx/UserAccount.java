@@ -120,13 +120,39 @@ public class UserAccount extends Account {
     public void viewChats() {
     	this.hasUnreadMessages = false;
     	//implement view here.
+        int i=0;
+        int getThisPt=0;
+        Message m1;
+        for(Chat getChat:ChatsInitiated)
+        {
+          if(getChat.getFirstParticipant().Name==this.Name)
+          {
+             getThisPt=1;
+          }
+          else if(getChat.getSecoundParticipant().Name==this.Name)
+          {
+              getThisPt=2;
+          }
+          if(getThisPt==1)
+          {
+              System.out.println(i + "- " + getChat.getSecoundParticipant().Name);
+          }
+          else if(getThisPt==2)
+          {
+               System.out.println(i + "- " + getChat.getFirstParticipant().Name);
+          
+          }
+          System.out.println(getChat.getLatestMessage());
+          System.out.println(getChat.getTimeOfLatestMessage());
+          i++;
+        }
+      
     }
     
     public void viewFollowerAds() {
     	this.hasUnopenedUpdates = false;
     	//implement view here.
     }
-    
     
 
 }
