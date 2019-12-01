@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.concurrent.Flow;
 
 import org.slf4j.*;
 
@@ -144,7 +145,14 @@ public class UserAccount extends Account {
         this.hasUnopenedUpdates = false;
         //implement view here.
     }
-    
+
+    public void printPublishedAds(){
+        for(int i=0;i<published.size();i++)
+        {
+            System.out.println("Press" + i +" to edit that Advertisement");
+            published.get(i).viewAdvertisement();
+        }
+    }
 
     public void createAdvertisement() {
 
@@ -172,7 +180,8 @@ public class UserAccount extends Account {
                 String make = textIO.newStringInputReader().withMinLength(1).read("Make");
                 Condition cond = textIO.newEnumInputReader(Condition.class).read("Condition");
                 e = new Electronics(title, price, description, this.loc, this, cond, make);
-
+                OLX.getInstance().addAdvertisement(e);
+                this.published.add(e);
                 break;
             case 2:
                 int b = textIO.newIntInputReader().read("No of Bedrooms");
@@ -182,6 +191,8 @@ public class UserAccount extends Account {
                 House h;
 
                 h = new House(title, price, description, this.loc, this, a,Prop, b, b1);
+                OLX.getInstance().addAdvertisement(h);
+                this.published.add(h);
                 break;
             case 3:
                 Jobs j;
@@ -189,6 +200,8 @@ public class UserAccount extends Account {
                 String cn = textIO.newStringInputReader().withMinLength(1).read("Company Name");
                 String d = textIO.newStringInputReader().withMinLength(1).read("Description");
                 j = new Jobs(title, price, description, this.loc, this, n, cn, d);
+                OLX.getInstance().addAdvertisement(j);
+                this.published.add(j);
                 break;
 
             case 4:
@@ -197,12 +210,16 @@ public class UserAccount extends Account {
                 Condition cond1 = textIO.newEnumInputReader(Condition.class).read("Condition");
 
                 m = new Mobile(title, price, description, this.loc, this, make1, cond1);
+                OLX.getInstance().addAdvertisement(m);
+                this.published.add(m);
                 break;
 
             case 5:
                 Pets p;
                 String breed = textIO.newStringInputReader().withMinLength(1).read("Breed");
                 p = new Pets(title, price, description, this.loc, this, breed);
+                OLX.getInstance().addAdvertisement(p);
+                this.published.add(p);
                 break;
             case 6:
                 Property pr;
@@ -210,6 +227,8 @@ public class UserAccount extends Account {
                 PropertyType Prop1= textIO.newEnumInputReader(PropertyType.class).read("Property Type");
 
                 pr = new Property(title, price, description, this.loc, this, a1, Prop1);
+                OLX.getInstance().addAdvertisement(pr);
+                this.published.add(pr);
                 break;
             case 7:
                 Vehicle v;
@@ -223,6 +242,7 @@ public class UserAccount extends Account {
 
 
                 v = new Vehicle(title, price, description, this.loc, this, make2, y, cond2, d1, f, km);
+                OLX.getInstance().addAdvertisement(v);
                 break;
             default:
 

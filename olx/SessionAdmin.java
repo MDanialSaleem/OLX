@@ -1,5 +1,4 @@
 package olx;
-
 public class SessionAdmin extends SessionState {
 
 	@Override

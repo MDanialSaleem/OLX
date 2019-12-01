@@ -58,7 +58,7 @@ public class QueryBuilder {
 	}
 	public void sortByPrice() {
 		//tobeimplemened.
-		Collections.sort(initialResults, new Sortbyprice());
+		//Collections.sort(initialResults, new Sortbyprice());
 	}
 	
 	public void sortByTime() {

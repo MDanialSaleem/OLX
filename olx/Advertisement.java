@@ -1,5 +1,4 @@
 package olx;
-
 import java.util.*;
 
 import org.slf4j.*;

@@ -8,16 +8,23 @@ public class Main {
     	OLX application=OLX.getInstance();
     	application.setAdministrator(new AdminAccount("Hadi",LocalDate.now(),"hadi@gmail.com","123456","123"));
     	welcomeMessage();
-		boolean temp;
+		int temp=4;
 		while(true){
-			StartupLogin();
-			temp=userCall(userInputInt());
-			if (temp==false)
-				break;
+			if(temp==4){
+				StartupLogin();
+				temp=userInputInt();
+				userCall(temp);
 			}
+			else if(temp==1 || temp==2)
+			{
+				LoggedMenu();
+				temp=userInputInt();
+				userLoggedcall(temp);
+			}
+		}
 
+	}
 
-    }
 
 
 
@@ -47,6 +54,26 @@ public class Main {
 			return false;
     }
 
+	static boolean userLoggedcall(int i){
+		if(i==1)
+		{OLX.getInstance().getCurrentUserAccount().createAdvertisement();}
+		else if(i==4){
+			OLX.getInstance().logOutUser();
+			return true;
+		}
+		else if(i==2)
+		{
+			OLX.getInstance().getCurrentUserAccount().printPublishedAds();
+			int t=userInputInt();
+			OLX.getInstance().getCurrentUserAccount().published.get(t).editAdvertisement();
+		}
+		else
+		{
+			OLX.getInstance().viewAdvertisements();
+		}
+		return false;
+	}
+
      static void welcomeMessage(){
     	System.out.println("Welcome to OLX.com");
 	 }
@@ -68,4 +95,11 @@ public class Main {
 		System.out.println("Press 4 to view as Published Advertisements.");
 	}
 
+	static void LoggedMenu(){
+		System.out.println("----------------Logged Succesfully--------------------");
+		System.out.println("Press 1 to publish as Ad.");
+		System.out.println("Press 4 to Login as Log out.");
+		System.out.println("Press 2 to see your published Ad and edit.");
+		System.out.println("Press 3 to view as Published Advertisements.");
+	}
 }

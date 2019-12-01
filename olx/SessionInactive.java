@@ -25,7 +25,7 @@ public class SessionInactive extends SessionState {
 
 		for(int i=0;i<OLX.getInstance().getAccounts().size();i++)
 		{
-			if(OLX.getInstance().getAccounts().get(i).Email==email && OLX.getInstance().getAccounts().get(i).Password==	Pass) {
+			if(OLX.getInstance().getAccounts().get(i).Email.equalsIgnoreCase(email) && OLX.getInstance().getAccounts().get(i).Password.equalsIgnoreCase(Pass)) {
 				OLX.getInstance().setState(new SessionUser());
 				OLX.getInstance().setActiveAccount(OLX.getInstance().getAccounts().get(i));
 				return true;
