@@ -173,28 +173,23 @@ public class UserAccount extends Account {
         //taking user input
 
 
-        int inserted = textIO.newIntInputReader().withMinVal(1).withMaxVal(7).read("Enter Your Option");
+        int inserted = textIO.newIntInputReader().withMaxVal(7).read("Enter Your Option");
         switch (inserted) {
             case 1:
                 Electronics e;
                 String make = textIO.newStringInputReader().withMinLength(1).read("Make");
-                String cond = textIO.newStringInputReader().withMinLength(1).read("Condition");
-                if (cond.equalsIgnoreCase("new"))
-                    e = new Electronics(title, price, description, this.loc, this, Condition.NEW, make);
-                else if (cond.equalsIgnoreCase("used"))
-                    e = new Electronics(title, price, description, this.loc, this, Condition.USED, make);
+                Condition cond = textIO.newEnumInputReader(Condition.class).read("Condition");
+                e = new Electronics(title, price, description, this.loc, this, cond, make);
 
                 break;
             case 2:
                 int b = textIO.newIntInputReader().read("No of Bedrooms");
                 int b1 = textIO.newIntInputReader().read("No of Bathrooms");
                 int a = textIO.newIntInputReader().read("Area Units");
-                String Prop = textIO.newStringInputReader().withMinLength(1).read("Property Type");
+                PropertyType Prop = textIO.newEnumInputReader(PropertyType.class).read("Property Type");
                 House h;
-                if (Prop.equalsIgnoreCase("rent"))
-                    h = new House(title, price, description, this.loc, this, a, PropertyType.RENT, b, b1);
-                else if (Prop.equalsIgnoreCase("sale"))
-                    h = new House(title, price, description, this.loc, this, a, PropertyType.SALE, b, b1);
+
+                h = new House(title, price, description, this.loc, this, a,Prop, b, b1);
                 break;
             case 3:
                 Jobs j;
@@ -207,11 +202,9 @@ public class UserAccount extends Account {
             case 4:
                 Mobile m;
                 String make1 = textIO.newStringInputReader().withMinLength(1).read("Make");
-                String cond1 = textIO.newStringInputReader().withMinLength(1).read("Condition");
-                if (cond1.equalsIgnoreCase("new"))
-                    m = new Mobile(title, price, description, this.loc, this, make1, Condition.NEW);
-                else if (cond1.equalsIgnoreCase("used"))
-                    m = new Mobile(title, price, description, this.loc, this, make1, Condition.USED);
+                Condition cond1 = textIO.newEnumInputReader(Condition.class).read("Condition");
+
+                m = new Mobile(title, price, description, this.loc, this, make1, cond1);
                 break;
 
             case 5:
@@ -222,34 +215,25 @@ public class UserAccount extends Account {
             case 6:
                 Property pr;
                 int a1 = textIO.newIntInputReader().read("Area Units");
-                String Prop1 = textIO.newStringInputReader().withMinLength(1).read("Property Type");
-                if (Prop1.equalsIgnoreCase("rent"))
-                    pr = new Property(title, price, description, this.loc, this, a1, PropertyType.RENT);
-                else if (Prop1.equalsIgnoreCase("sale"))
-                    pr = new Property(title, price, description, this.loc, this, a1, PropertyType.SALE);
+                PropertyType Prop1= textIO.newEnumInputReader(PropertyType.class).read("Property Type");
+
+                pr = new Property(title, price, description, this.loc, this, a1, Prop1);
                 break;
             case 7:
                 Vehicle v;
 
                 String make2 = textIO.newStringInputReader().withMinLength(1).read("Make");
-                String cond2 = textIO.newStringInputReader().withMinLength(1).read("Condition");
+                Condition cond2 = textIO.newEnumInputReader(Condition.class).read("Condition");
                 int y = textIO.newIntInputReader().read("Year");
-                String f = textIO.newStringInputReader().read("Fuel");
-                Fuel f1;
-                if (f.equalsIgnoreCase("Petrol"))
-                    f1 = Fuel.PETROL;
-                else if (f.equalsIgnoreCase("Gas"))
-                    f1 = Fuel.GAS;
-                else
-                    f1 = Fuel.DIESEL;
+                Fuel f = textIO.newEnumInputReader(Fuel.class).read("Fuel");
                 float km = textIO.newFloatInputReader().read("KiloMeter Driven");
-
                 Date d1 = new Date(12 - 13 - 2010);
 
-                if (cond2.equalsIgnoreCase("new"))
-                    v = new Vehicle(title, price, description, this.loc, this, make2, y, Condition.NEW, d1, f1, km);
-                else if (cond2.equalsIgnoreCase("used"))
-                    v = new Vehicle(title, price, description, this.loc, this, make2, y, Condition.USED, d1, f1, km);
+
+                v = new Vehicle(title, price, description, this.loc, this, make2, y, cond2, d1, f, km);
+                break;
+            default:
+
                 break;
 
         }
