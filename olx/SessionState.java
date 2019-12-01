@@ -1,4 +1,4 @@
-package com.company;
+package olx;
 
 public abstract class SessionState {
     public abstract UserAccount getCurrentUserAccount();

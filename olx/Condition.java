@@ -1,4 +1,4 @@
-package com.company;
+package olx;
 
 public enum Condition {
 	NEW, USED

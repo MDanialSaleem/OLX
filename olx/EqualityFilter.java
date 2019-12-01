@@ -1,4 +1,4 @@
-package com.company;
+package olx;
 
 public class EqualityFilter<T extends Comparable<T>> extends Filter<T> {
 	T value;

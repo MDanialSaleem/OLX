@@ -1,4 +1,5 @@
-package com.company;
+package olx;
+
 
 public class SessionUser extends SessionState {
 

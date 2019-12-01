@@ -1,4 +1,5 @@
-package com.company;
+package olx;
+
 
 import java.util.Date;
 import java.util.List;

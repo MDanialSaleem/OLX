@@ -1,4 +1,4 @@
-package com.company;
+package olx;
 
 public class RangeFilter<T extends Comparable<T>> extends Filter<T>{
 

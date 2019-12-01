@@ -1,4 +1,4 @@
-package com.company;
+package olx;
 
 public enum Fuel {
 PETROL, GAS, DIESEL

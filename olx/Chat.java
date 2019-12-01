@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-package com.company;
+package olx;
 =======
 package olx;
 import java.time.LocalDateTime;

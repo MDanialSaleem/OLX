@@ -1,4 +1,4 @@
-package com.company;
+package olx;
 
 public abstract class Filter<T extends Comparable<T>> {
 	private String name;

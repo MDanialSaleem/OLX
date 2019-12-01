@@ -1,4 +1,5 @@
-package com.company;
+package olx;
+
 
 public enum Status {
 APPROVED, NOT_APPROVED, WAITING

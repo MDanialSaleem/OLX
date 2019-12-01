@@ -1,5 +1,4 @@
-package com.company;
-
+package olx;
 import java.util.List;
 
 public class Pets extends Advertisement{
