@@ -84,60 +84,40 @@ public class Advertisement {
         System.out.println("--------------------------------------------------");
     }
 
-    class Sortbyprice implements Comparator<Advertisement> 
-    { 
+    class Sortbyprice implements Comparator<Advertisement>
+    {
         // Used for sorting in ascending order of 
         // price 
-        public int compare(Advertisement a, Advertisement b) 
-        { 
-            return a.price - b.price; 
-        } 
+        public int compare(Advertisement a, Advertisement b)
+        {
+            return a.price - b.price;
+        }
     }
 
 
     public void editAdvertisement() {
-        this.viewAdvertisement();
-        //menu for the user
-        System.out.println("Press 1 in order to edit title");
-        System.out.println("Press 2 in order to edit price");
-        System.out.println("Press 3 in order to edit description");
-        System.out.println("Press 0 in order to exit");
+        System.out.println("Enter new values or press \"Enter\" to skip");
 
-        //taking user input
+        String t = textIO.newStringInputReader().withDefaultValue(this.tittle).read("Title");
+        this.setTittle(t);
 
+        int p= textIO.newIntInputReader().withDefaultValue(this.price).read("Price");
+        this.setPrice(p);
 
-
-
-        int inserted=textIO.newIntInputReader().withMinVal(0).withMaxVal(3).read("Enter Your Option");
-        switch (inserted){
-            case 1 :
-                String t = textIO.newStringInputReader().withMinLength(1).read("Title");
-                this.setTittle(t);
-                break;
-            case 2 :
-                int p= textIO.newIntInputReader().read("Price");
-                this.setPrice(p);
-                break;
-            case 3 :
-                String descr = textIO.newStringInputReader().withMinLength(1).read("Description");
-                this.setDescription(descr);
-                break;
-
-            case 0:
-                break;
-        }
-
+        String descr = textIO.newStringInputReader().withDefaultValue(this.description).read("Description");
+        this.setDescription(descr);
 
     }
 
+
     public void approveDisapprove(boolean decision, AdminAccount judge) {
-    	this.admin = judge;
-		if(decision) {
-			this.status = Status.APPROVED;
-		}
-		else {
-			this.status = Status.NOT_APPROVED;
-		}
+        this.admin = judge;
+        if(decision) {
+            this.status = Status.APPROVED;
+        }
+        else {
+            this.status = Status.NOT_APPROVED;
+        }
     }
     public void likeAdvertisement() {
         likes++;
@@ -157,94 +137,94 @@ public class Advertisement {
         return true;
     }
 
-	public int getViews() {
-		return views;
-	}
+    public int getViews() {
+        return views;
+    }
 
-	public void setViews(int views) {
-		this.views = views;
-	}
+    public void setViews(int views) {
+        this.views = views;
+    }
 
-	public int getShares() {
-		return shares;
-	}
+    public int getShares() {
+        return shares;
+    }
 
-	public void setShares(int shares) {
-		this.shares = shares;
-	}
+    public void setShares(int shares) {
+        this.shares = shares;
+    }
 
-	public int getLikes() {
-		return likes;
-	}
+    public int getLikes() {
+        return likes;
+    }
 
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
 
-	public Status getStatus() {
-		return status;
-	}
+    public Status getStatus() {
+        return status;
+    }
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
-	public Location getLoc() {
-		return loc;
-	}
+    public Location getLoc() {
+        return loc;
+    }
 
-	public void setLoc(Location loc) {
-		this.loc = loc;
-	}
+    public void setLoc(Location loc) {
+        this.loc = loc;
+    }
 
-	public List<Report> getReports() {
-		return reports;
-	}
+    public List<Report> getReports() {
+        return reports;
+    }
 
-	public void setReports(List<Report> reports) {
-		this.reports = reports;
-	}
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
 
-	public AdminAccount getAdmin() {
-		return admin;
-	}
+    public AdminAccount getAdmin() {
+        return admin;
+    }
 
-	public void setAdmin(AdminAccount admin) {
-		this.admin = admin;
-	}
+    public void setAdmin(AdminAccount admin) {
+        this.admin = admin;
+    }
 
-	public UserAccount getCreator() {
-		return creator;
-	}
+    public UserAccount getCreator() {
+        return creator;
+    }
 
-	public void setCreator(UserAccount creator) {
-		this.creator = creator;
-	}
+    public void setCreator(UserAccount creator) {
+        this.creator = creator;
+    }
 
-	public TextIO getTextIO() {
-		return textIO;
-	}
+    public TextIO getTextIO() {
+        return textIO;
+    }
 
-	public void setTextIO(TextIO textIO) {
-		this.textIO = textIO;
-	}
+    public void setTextIO(TextIO textIO) {
+        this.textIO = textIO;
+    }
 
-	public String getTittle() {
-		return tittle;
-	}
+    public String getTittle() {
+        return tittle;
+    }
 
-	public int getPrice() {
-		return price;
-	}
+    public int getPrice() {
+        return price;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public String getDescription() {
-		return description;
-	}
-    
+    public String getDescription() {
+        return description;
+    }
+
 
 
 }

@@ -1,8 +1,14 @@
 package olx;
 
-
 import java.util.Date;
 import java.util.List;
+
+import org.slf4j.*;
+
+
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
+
 
 public class Vehicle extends Advertisement {
     String make;
@@ -11,6 +17,8 @@ public class Vehicle extends Advertisement {
     Date registeration;
     Fuel fuel;
     float KMdriven;
+
+    TextIO textIO = TextIoFactory.getTextIO();
 
     public Vehicle( String tittle, int price, String description, Location loc, UserAccount creator, String make, int year, Condition condition, Date registeration, Fuel fuel, float KMdriven) {
         super(tittle, price, "Vehicle", description, loc, creator);
@@ -32,6 +40,12 @@ public class Vehicle extends Advertisement {
         this.KMdriven = KMdriven;
     }
 
+
+    public AdminAccount getAdmin() {
+        return super.getAdmin();
+    }
+
+    @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
         System.out.println("Make "+make);
@@ -65,5 +79,22 @@ public class Vehicle extends Advertisement {
             }
         }
         return satisfies && super.satisfyQuery(builder);
+    }
+
+    @Override
+    public void editAdvertisement() {
+
+
+        System.out.println("Enter new values or press \"Enter\" to skip");
+
+        super.editAdvertisement();
+
+        this.make = textIO.newStringInputReader().withDefaultValue(this.make).read("Make");
+
+        this.condition= textIO.newEnumInputReader(Condition.class).withDefaultValue(this.condition).read("Condition");
+        this.fuel=textIO.newEnumInputReader(Fuel.class).withDefaultValue(this.fuel).read("Fuel");
+        this.KMdriven=textIO.newFloatInputReader().withDefaultValue(this.KMdriven).read("KM driven");
+        this.year=textIO.newIntInputReader().withDefaultValue(this.year).read("Year");
+
     }
 }

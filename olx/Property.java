@@ -1,9 +1,18 @@
 package olx;
+
 import java.util.List;
+
+import org.slf4j.*;
+
+
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
 
 public class Property extends Advertisement{
     int AreaUnits;
     PropertyType propertyType;
+
+    TextIO textIO = TextIoFactory.getTextIO();
 
     public Property( String tittle, int price, String description, Location loc, UserAccount creator,  int areaUnits, PropertyType propertyType) {
         super(tittle, price, "Property", description,  loc,  creator);
@@ -16,12 +25,27 @@ public class Property extends Advertisement{
         AreaUnits = areaUnits;
         this.propertyType = propertyType;
     }
-
+    @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
         System.out.println("AreaUnits "+AreaUnits);
         System.out.println("Property "+propertyType);
     }
+    @Override
+    public void editAdvertisement() {
+        this.viewAdvertisement();
+
+
+
+        super.editAdvertisement();
+
+        this.AreaUnits = textIO.newIntInputReader().withDefaultValue(this.AreaUnits).read("AreaUnits");
+
+        this.propertyType= textIO.newEnumInputReader(PropertyType.class).withDefaultValue(this.propertyType).read("Property Type");
+
+
+    }
+
     @Override
     public boolean satisfyQuery(QueryBuilder builder) {
 

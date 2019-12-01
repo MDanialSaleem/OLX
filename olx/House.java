@@ -1,9 +1,19 @@
 package olx;
+
 import java.util.List;
+
+import org.slf4j.*;
+
+
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
+
 
 public class House extends Property {
     int NoOfBedrooms;
     int NoOfBathrooms;
+
+    TextIO textIO = TextIoFactory.getTextIO();
 
     public House(String tittle, int price, String description, Location loc, UserAccount creator, int areaUnits, PropertyType propertyType, int noOfBedrooms, int noOfBathrooms) {
         super( tittle, price, description, loc,creator, areaUnits, propertyType);
@@ -23,5 +33,19 @@ public class House extends Property {
         System.out.println("Bathrooms "+NoOfBathrooms);
 
     }
+    @Override
+    public void editAdvertisement() {
+        this.viewAdvertisement();
+
+        super.editAdvertisement();
+
+        this.NoOfBathrooms = textIO.newIntInputReader().withDefaultValue(this.NoOfBathrooms).read("No Of Bathrooms");
+
+        this.NoOfBedrooms= textIO.newIntInputReader().withDefaultValue(this.NoOfBedrooms).read("No Of Bedrooms");
+
+
+    }
 }
+
+
 

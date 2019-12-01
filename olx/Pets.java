@@ -1,8 +1,16 @@
 package olx;
+
 import java.util.List;
+import org.slf4j.*;
+
+
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
 
 public class Pets extends Advertisement{
     String breed;
+
+    TextIO textIO = TextIoFactory.getTextIO();
 
     public Pets( String tittle, int price,  String description, Location loc,  UserAccount creator, String breed) {
         super( tittle, price,"Pets", description,  loc, creator);
@@ -13,10 +21,22 @@ public class Pets extends Advertisement{
         super(views, shares, likes, tittle, price,"Pets", description, status, loc, rep, admin, creator);
         this.breed = breed;
     }
-
+    @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
         System.out.println("Breed "+breed);
+    }
+    @Override
+    public void editAdvertisement() {
+
+
+        System.out.println("Enter new values or press \"Enter\" to skip");
+
+        super.editAdvertisement();
+
+        this.breed = textIO.newStringInputReader().withDefaultValue(this.breed).read("breed");
+
+
     }
 
     @Override

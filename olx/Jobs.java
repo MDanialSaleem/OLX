@@ -1,11 +1,19 @@
 package olx;
 
+
 import java.util.List;
+import org.slf4j.*;
+
+
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
 
 public class Jobs extends Advertisement {
     int noOfPositions;
     String companyName;
     String Description;
+
+    TextIO textIO = TextIoFactory.getTextIO();
 
     public Jobs(String tittle, int price,  String description,Location loc, UserAccount creator, int noOfPositions, String companyName, String description1) {
         super( tittle, price, "Job", description,  loc, creator);
@@ -20,9 +28,24 @@ public class Jobs extends Advertisement {
         Description = description1;
     }
 
+    @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
         System.out.println("Number of Positions "+noOfPositions);
         System.out.println("Company Name "+companyName);
+    }
+    @Override
+    public void editAdvertisement() {
+
+
+        System.out.println("Enter new values or press \"Enter\" to skip");
+
+        super.editAdvertisement();
+
+        this.companyName = textIO.newStringInputReader().withDefaultValue(this.companyName).read("Company Name");
+
+        this.noOfPositions= textIO.newIntInputReader().withDefaultValue(this.noOfPositions).read("No of Positions");
+
+
     }
 }

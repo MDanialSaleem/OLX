@@ -1,9 +1,18 @@
 package olx;
+
 import java.util.List;
+import org.slf4j.*;
+
+
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
 
 public class Electronics extends Advertisement {
 	Condition condition;
 	String Make;
+
+
+	TextIO textIO = TextIoFactory.getTextIO();
 
 
 	public Electronics( String tittle, int price, String description, Location loc,UserAccount creator, Condition condition, String make) {
@@ -33,4 +42,26 @@ public class Electronics extends Advertisement {
 		}
 		return satisfies && super.satisfyQuery(builder);
 	}
+	@Override
+	public void viewAdvertisement(){
+		super.viewAdvertisement();
+		System.out.println("Make "+this.Make);
+		System.out.println("Condition "+this.condition);
+
+	}
+	@Override
+	public void editAdvertisement() {
+
+
+		System.out.println("Enter new values or press \"Enter\" to skip");
+
+		super.editAdvertisement();
+
+		this.Make = textIO.newStringInputReader().withDefaultValue(this.Make).read("Make");
+
+		this.condition= textIO.newEnumInputReader(Condition.class).withDefaultValue(this.condition).read("Condition");
+
+
+	}
+
 }
