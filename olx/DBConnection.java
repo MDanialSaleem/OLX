@@ -131,7 +131,7 @@ public class DBConnection {
             System.out.println(e);
         }
     }
-    insert a pet
+  // insert a pet
     void insertAdvertisementPets(int  UserId, String title, int  price, String desc,String ApprovalStatus, int localeId, int AdminId, String category,String breed)
     {
         try

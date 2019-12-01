@@ -67,9 +67,9 @@ public class Report {
 	}
 
 	public void viewReport() {
-<<<<<<< HEAD
+
 		this.toString();
-=======
+
           System.out.println("The details of Report of the Advertisement : ");  
             
 	  System.out.println("Content of report: ");
@@ -84,8 +84,7 @@ public class Report {
           System.out.println(ad.type);       
           System.out.println("Description of Advertisement  : ");
           System.out.println(ad.description);
-           
->>>>>>> 1ff1daca23a4bbf44ceb0cde1b6ea1bd74e475bb
+
 	}
     
 }

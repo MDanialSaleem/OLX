@@ -1,9 +1,8 @@
-<<<<<<< HEAD
+
 package olx;
-=======
-package olx;
+
 import java.time.LocalDateTime;
->>>>>>> 1ff1daca23a4bbf44ceb0cde1b6ea1bd74e475bb
+
 import java.util.*;
 
 public class Chat {
