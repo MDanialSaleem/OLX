@@ -108,6 +108,17 @@ public class UserAccount extends Account {
         }
     }
 
+    public Chat getChatWithUser(UserAccount user) {
+    	Chat result = null;
+    	
+    	for(Chat chat : this.ChatsInitiated) {
+    		if(chat.isParticipant(user)) {
+    			result = chat;
+    			break;
+    		}
+    	}
+    	return result;
+    }
     public void viewChats() {
     	this.hasUnreadMessages = false;
     	//implement view here.

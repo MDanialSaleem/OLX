@@ -21,6 +21,7 @@ public class Chat {
 		this.messages = messages;
 	}
 	
+	
 	public void addMessage(String text, UserAccount sender) {
 		if(!sender.equals(participants[0]) && !sender.equals(participants[1])) {
 			throw new IllegalArgumentException("In Chat class: Sender is not one of participants");
@@ -33,6 +34,11 @@ public class Chat {
 		}
 	}
 	
+	public void viewChat() {
+		for(Message message : messages) {
+			message.viewMessage();
+		}
+	}
 	public UserAccount[] getParticipants() {
 		UserAccount[] temp = new UserAccount[2];
 		for(int i =0; i<2;i++)
@@ -72,6 +78,14 @@ public class Chat {
               
             }           
              return time;
+        }
+        
+        
+        boolean isParticipant(UserAccount user) {
+        	if(participants[0].equals(user) || participants[1].equals(user)) {
+        		return true;
+        	}
+        	return false;
         }
 		
 }
