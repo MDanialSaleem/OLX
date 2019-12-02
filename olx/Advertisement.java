@@ -225,5 +225,8 @@ public class Advertisement {
     }
 
 
+    public Report reportAdvertisement() {
+    	return null;
+    }
 
 }

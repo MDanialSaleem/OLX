@@ -3,8 +3,6 @@ package olx;
 import java.util.*;
 import java.time.LocalDate;
 import org.slf4j.*;
-
-
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
 public class AdminAccount extends Account {

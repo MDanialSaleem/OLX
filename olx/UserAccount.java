@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.time.LocalDate;
-import java.util.concurrent.Flow;
 
 import org.slf4j.*;
 
@@ -154,6 +153,9 @@ public class UserAccount extends Account {
         }
     }
 
+    public void viewUserProfile() {
+    	//implement view user functionality here.
+    }
     public void createAdvertisement() {
 
         String title = textIO.newStringInputReader().withMinLength(1).read("Title");
