@@ -251,4 +251,18 @@ public class UserAccount extends Account {
         }
 
     }
+
+    public void viewProfile(){
+
+        System.out.println("Name : " + this.Name);
+        System.out.println("Join Date : " + this.JoinDate);
+        System.out.println("Email : " + this.Email);
+        System.out.println("Phone Number : " + this.PhoneNumber);
+        System.out.println("Password : " + this.Password);
+        System.out.println("Location : " + this.loc);
+        System.out.println("Has Unread Messages : " + this.hasUnreadMessages);
+        System.out.println("Has Unopened Updates : " + this.hasUnopenedUpdates);
+
+
+    }
 }

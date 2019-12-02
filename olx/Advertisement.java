@@ -136,6 +136,17 @@ public class Advertisement {
         return true;
     }
 
+    public void createReport(){
+        OLX olx=OLX.getInstance();
+        String c = textIO.newStringInputReader().read("Content");
+        String cat = textIO.newStringInputReader().read("Category");
+
+        Report r=new Report(c,cat,this);
+        this.reports.add(r);
+
+    }
+
+
     public int getViews() {
         return views;
     }

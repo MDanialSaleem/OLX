@@ -67,5 +67,14 @@ public class Location {
         }else return false;
 
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "Block='" + this.Block + '\'' +
+                ", Society Name='" + this.SocietyName + '\'' +
+                ", City=" + this.City + '\'' +
+                ", State=" + this.State +'}';
+    }
 }
 
