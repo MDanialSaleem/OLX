@@ -17,12 +17,10 @@ public class OLX {
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
     private List<Location> locations = new ArrayList<>();
     private AdminAccount administrator;
-    @SuppressWarnings("unused")
     private List<Account> accounts = new ArrayList<>();
     public List<Advertisement> getAdvertisements() {
         return advertisements;
     }
-    @SuppressWarnings("unused")
     private Account activeAccount = null;
     private OLX(){};
     public static OLX getInstance(){
@@ -120,8 +118,8 @@ public class OLX {
         advertisements.remove(ad);
     }
 
-    public SessionUser getAdminForApproval() {
-        return null; //BIG BIG ISSUES HERE.
+    public AdminAccount getAdminForApproval() {
+    	return this.getAdministrator();  //duplicate functions. Marked for remova in next update.
     }
 
     static int userInputInt(){

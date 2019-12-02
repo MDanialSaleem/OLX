@@ -136,13 +136,17 @@ public class Advertisement {
         return true;
     }
 
-    public void createReport(){
+    public Report createReport(){
         OLX olx=OLX.getInstance();
         String c = textIO.newStringInputReader().read("Content");
         String cat = textIO.newStringInputReader().read("Category");
 
-        Report r=new Report(c,cat,this);
+        AdminAccount admin = olx.getAdminForApproval();
+        Report r=new Report(c,cat, Status.WAITING, admin,this);
         this.reports.add(r);
+        admin.addReportForApproval(r);
+        
+        return r;
 
     }
 

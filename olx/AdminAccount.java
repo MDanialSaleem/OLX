@@ -28,6 +28,7 @@ public class AdminAccount extends Account {
 	}
 	
 	public void viewAdsForApproval() {
+		this.hasWaitingAds = false;
 		for(int i = 1; i <= adsWaitingList.size(); i++) {
 			System.out.println(i + ": " + adsWaitingList.get(i).getTittle());
 		}
@@ -63,7 +64,14 @@ public class AdminAccount extends Account {
 	}
 	
 	
+	public void addReportForApproval(Report report) {
+		this.reportsWaitingList.add(report);
+	}
 	
+	public void addAdForApproval(Advertisement ad) {
+		this.hasWaitingAds = true;
+		this.adsWaitingList.add(ad);
+	}
 	
 	
 
