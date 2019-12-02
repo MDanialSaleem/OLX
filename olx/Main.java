@@ -2,23 +2,35 @@ package olx;
 import java.time.LocalDate;
 import java.util.*;
 
+import org.beryx.textio.TextTerminal;
+import org.slf4j.*;
+
+
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
+
 public class Main {
 
-    public static void main(String[] args) {
-    	OLX application=OLX.getInstance();
-    	application.setAdministrator(new AdminAccount("Hadi",LocalDate.now(),"hadi@gmail.com","123456","123"));
-    	welcomeMessage();
+	public static void main(String[] args) {
+		TextIO textIO = TextIoFactory.getTextIO();
+		TextTerminal terminal = textIO.getTextTerminal();
+
+
+		OLX application=OLX.getInstance();
+		application.setAdministrator(new AdminAccount("Hadi",LocalDate.now(),"hadi@gmail.com","123456","123"));
+		welcomeMessage();
 		int temp=4;
 		while(true){
 			if(temp==4){
 				StartupLogin();
-				temp=userInputInt();
+				temp=textIO.newIntInputReader().read("Enter your selection");
+
 				userCall(temp);
 			}
 			else if(temp==1 || temp==2)
 			{
 				LoggedMenu();
-				temp=userInputInt();
+				temp=textIO.newIntInputReader().read("Enter your selection");
 				userLoggedcall(temp);
 			}
 		}
@@ -30,31 +42,36 @@ public class Main {
 
 
 
-    static boolean userCall(int i){
-			if(i==1)
-			{OLX.getInstance().registerUser();return true;}
-			else if(i==2){
-				boolean ret=OLX.getInstance().logInUser();
-				if(ret==false)
-					System.out.println("Wrong Credentials");
-				System.out.println("User Successfully Logged in");
-				return true;
-			}
-			else if(i==3){
-				boolean ret=OLX.getInstance().logInAdmin();
-				if(ret==false)
-					System.out.println("Wrong Credentials");
-				System.out.println("User Successfully Logged in");
-				return true;
-			}
-			else
-			{
-				OLX.getInstance().viewAdvertisements();
-			}
-			return false;
-    }
+	static boolean userCall(int i){
+		TextIO textIO = TextIoFactory.getTextIO();
+		TextTerminal terminal = textIO.getTextTerminal();
+		if(i==1)
+		{OLX.getInstance().registerUser();return true;}
+		else if(i==2){
+			boolean ret=OLX.getInstance().logInUser();
+			if(ret==false)
+				terminal.printf("\n\"Wrong Credentials\"\n");
+			terminal.printf("\n\"User Successfully Logged in\"\n");
+
+			return true;
+		}
+		else if(i==3){
+			boolean ret=OLX.getInstance().logInAdmin();
+			if(ret==false)
+				terminal.printf("\n\"Wrong Credentials\"\n");
+			terminal.printf("\n\"User Successfully Logged in\"\n");
+
+			return true;
+		}
+		else
+		{
+			OLX.getInstance().viewAdvertisements();
+		}
+		return false;
+	}
 
 	static boolean userLoggedcall(int i){
+		TextIO textIO = TextIoFactory.getTextIO();
 		if(i==1)
 		{OLX.getInstance().getCurrentUserAccount().createAdvertisement();}
 		else if(i==4){
@@ -64,7 +81,7 @@ public class Main {
 		else if(i==2)
 		{
 			OLX.getInstance().getCurrentUserAccount().printPublishedAds();
-			int t=userInputInt();
+			int t=textIO.newIntInputReader().read("Enter your selection");
 			OLX.getInstance().getCurrentUserAccount().published.get(t).editAdvertisement();
 		}
 		else
@@ -74,32 +91,35 @@ public class Main {
 		return false;
 	}
 
-     static void welcomeMessage(){
-    	System.out.println("Welcome to OLX.com");
-	 }
+	static void welcomeMessage(){
+		TextIO textIO = TextIoFactory.getTextIO();
+		TextTerminal terminal = textIO.getTextTerminal();
 
-	static int userInputInt(){
-		Scanner input=new Scanner(System.in);
-		return input.nextInt();
+		terminal.printf("\n\"---------------- WELCOME TO OLX --------------------\"\n");
 	}
 
-	static String userInputText(){
-		Scanner input=new Scanner(System.in);
-		return input.next();
-	}
 
 	static void StartupLogin(){
-		System.out.println("Press 1 to register as User.");
-		System.out.println("Press 2 to Login as User.");
-		System.out.println("Press 3 to Login as Admin.");
-		System.out.println("Press 4 to view as Published Advertisements.");
+		TextIO textIO = TextIoFactory.getTextIO();
+		TextTerminal terminal = textIO.getTextTerminal();
+
+		terminal.printf("\nPress 1 to register as User.\n");
+		terminal.printf("\nPress 2 to Login as User.\n");
+		terminal.printf("\nPress 3 to Login as Admin.\n");
+		terminal.printf("\nPress 4 to view as Published Advertisements.\n");
+
 	}
 
 	static void LoggedMenu(){
-		System.out.println("----------------Logged Succesfully--------------------");
-		System.out.println("Press 1 to publish as Ad.");
-		System.out.println("Press 4 to Login as Log out.");
-		System.out.println("Press 2 to see your published Ad and edit.");
-		System.out.println("Press 3 to view as Published Advertisements.");
+		TextIO textIO = TextIoFactory.getTextIO();
+		TextTerminal terminal = textIO.getTextTerminal();
+
+		terminal.printf("\n\"----------------Logged Succesfully--------------------\"\n");
+		terminal.printf("\nPress 1 to publish as Ad.\n");
+		terminal.printf("\nPress 2 to see your published Ad and edit.\n");
+		terminal.printf("\nPress 3 to view as Published Advertisements.\n");
+		terminal.printf("\nPress 4 to log out.\n");
+
+
 	}
 }
