@@ -16,27 +16,6 @@ public class AdvertisementViewer {
 		this.list = list;
 	}
 	
-
-	private void displayUser(UserAccount user) {
-		user.viewUserProfile();
-		System.out.println("Press -1 to go back");
-		System.out.println("Press 1 to chat with the seller");
-		int input = textIO.newIntInputReader().withMinVal(-1).withMaxVal(1).withDefaultValue(-1).read("Input");
-		
-		if(input == 1) {
-			if(OLX.getInstance().getCurrentUserAccount() == null){
-				System.out.println("You must be logged in to perform this action");
-			}
-			else {
-				ChatViewer viewer = new ChatViewer(OLX.getInstance().getCurrentUserAccount(), user);
-				viewer.viewChat();
-			}
-			this.displayUser(user);
-			
-		}
-		
-		
-	}
 	private void displayAd(Advertisement ad) {
 		ad.viewAdvertisement();
 		boolean userLoggedIn = OLX.getInstance().getCurrentUserAccount() != null;
@@ -50,7 +29,8 @@ public class AdvertisementViewer {
 
 		switch (input) {
 		case 1:
-			displayUser(ad.getCreator());
+			UserProfileViewer viewer = new UserProfileViewer(ad.getCreator());
+			viewer.displayUserProfile();
 			displayAd(ad);
 			break;
 		case 2:
