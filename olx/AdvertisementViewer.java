@@ -16,14 +16,7 @@ public class AdvertisementViewer {
 		this.list = list;
 	}
 	
-	
-	private void displayChat(UserAccount receiver) {
-		UserAccount sender = OLX.getInstance().getCurrentUserAccount();
-		Chat exists = sender.getChatWithUser(receiver);
-		if(exists != null) {
-			
-		}
-	}
+
 	private void displayUser(UserAccount user) {
 		user.viewUserProfile();
 		System.out.println("Press -1 to go back");
@@ -35,8 +28,10 @@ public class AdvertisementViewer {
 				System.out.println("You must be logged in to perform this action");
 			}
 			else {
-				displayChat(user);	
+				ChatViewer viewer = new ChatViewer(OLX.getInstance().getCurrentUserAccount(), user);
+				viewer.viewChat();
 			}
+			this.displayUser(user);
 			
 		}
 		
