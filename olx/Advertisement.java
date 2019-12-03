@@ -73,14 +73,13 @@ public class Advertisement {
     }
 
     public void viewAdvertisement() {
+    	OLX.terminal.println("=========VIEWING ADVERTISEMENT DETAILS=========");
         OLX.terminal.println("Title "+tittle);
         OLX.terminal.println("Price "+price);
         OLX.terminal.println("Type "+type);
         OLX.terminal.println("Description "+description);
         OLX.terminal.println("Views "+views);
         OLX.terminal.println("Likes "+likes);
-
-        OLX.terminal.println("--------------------------------------------------");
     }
 
     class Sortbyprice implements Comparator<Advertisement>
@@ -241,7 +240,7 @@ public class Advertisement {
 
 
     public Report reportAdvertisement() {
-    	return null;
+    	return this.createReport(); //deprecate this function in next update.
     }
 
 }

@@ -70,6 +70,7 @@ public class UserAccount extends Account {
     }
 
     public void likeAdvertisement(Advertisement ad) {
+    	OLX.DBCON.addLikes(this.Email, ad);
         likedAds.add(ad);
     }
 
@@ -77,8 +78,8 @@ public class UserAccount extends Account {
         reportedAds.add(report);
     }
 
-    public void deleteAdvertisement() {
-        //tobeimplemented.
+    public void deleteAdvertisement(Advertisement ad) {
+        this.published.remove(ad);
     }
 
     public void sendMessage(UserAccount account, String message) {
@@ -105,6 +106,7 @@ public class UserAccount extends Account {
     }
 
     public void addFollower(UserAccount user) {
+    	OLX.DBCON.addFollower(user.Email, this.Email);
         Followers.add(user);
     }
 
@@ -168,7 +170,17 @@ public class UserAccount extends Account {
 
     public void viewFollowerAds() {
         this.hasUnopenedUpdates = false;
-        //implement view here.
+        List<String> followeeEmails = OLX.DBCON.getFolloweeEmails(this.Email);
+        for(String email : followeeEmails) {
+        	try {
+        		OLX.DBCON.getUserDetails(email).printPublishedAds();
+        	}
+        	catch(Exception e) {
+        		System.out.println(e);
+        	}
+        	
+        }
+        
     }
 
     public void printPublishedAds(){
@@ -178,7 +190,9 @@ public class UserAccount extends Account {
     }
 
     public void viewUserProfile() {
-    	//implement view user functionality here.
+    	OLX.terminal.println("=======USER PROFILE========");
+    	OLX.terminal.printf("Name: %s\nEmail: %s\nPhone:%s\n", this.Name, this.Email, this.PhoneNumber);
+    	
     }
     public void createAdvertisement() {
 
@@ -221,8 +235,6 @@ public class UserAccount extends Account {
                 h = new House(title, price, description, this.loc, this, a,Prop, b, b1);
                 OLX.getInstance().addAdvertisement(h);
                 this.published.add(h);
-                OLX.DBCON.insertAdvertisementHouse(h.getCreator().getEmail(), h.getTittle(), h.getPrice(), h.getDescription(),
-                		h.getStatus().name(), Categories.House.name(), h.getNoOfBedrooms(), h.getNoOfBathrooms());
                 break;
 
             case 3:
@@ -233,6 +245,8 @@ public class UserAccount extends Account {
                 j = new Jobs(title, price, description, this.loc, this, n, cn, d);
                 OLX.getInstance().addAdvertisement(j);
                 this.published.add(j);
+                OLX.DBCON.insertAdvertisementJobs(j.getCreator().getEmail(), j.getTittle(),
+                		j.getPrice(), j.getDescription(), j.getStatus().name(), Categories.Job.name(), j.getCompanyName(), j.getDescription());
                 break;
 
             case 4:
@@ -243,6 +257,8 @@ public class UserAccount extends Account {
                 m = new Mobile(title, price, description, this.loc, this, make1, cond1);
                 OLX.getInstance().addAdvertisement(m);
                 this.published.add(m);
+                OLX.DBCON.insertAdvertisementMobile(m.getCreator().getEmail(), m.getTittle(), m.getPrice(), m.getDescription(),
+                		m.getStatus().name(), Categories.Mobile.name(), m.getCondition().name(), m.getMake());
                 break;
 
             case 5:
@@ -251,6 +267,9 @@ public class UserAccount extends Account {
                 p = new Pets(title, price, description, this.loc, this, breed);
                 OLX.getInstance().addAdvertisement(p);
                 this.published.add(p);
+                OLX.DBCON.insertAdvertisementPets(p.getCreator().getEmail(),
+                		p.getTittle(), p.getPrice(), p.getDescription(), p.getStatus().name(), 
+                		Categories.Pet.name(), p.getBreed());
                 break;
             case 6:
                 Property pr;
@@ -260,6 +279,9 @@ public class UserAccount extends Account {
                 pr = new Property(title, price, description, this.loc, this, a1, Prop1);
                 OLX.getInstance().addAdvertisement(pr);
                 this.published.add(pr);
+                OLX.DBCON.insertAdvertisementProperty(pr.getCreator().getEmail(), pr.getTittle(),
+                		pr.getPrice(), pr.getDescription(), pr.getStatus().name(), 
+                		Categories.Property.name(), pr.getPropertyType().name());
                 break;
             case 7:
                 Vehicle v;
@@ -275,6 +297,10 @@ public class UserAccount extends Account {
                 v = new Vehicle(title, price, description, this.loc, this, make2, y, cond2, d1, f, km);
                 OLX.getInstance().addAdvertisement(v);
                 this.published.add(v);
+                OLX.DBCON.insertAdvertisementVehicle(v.getCreator().getEmail(),
+                		v.getTittle(), v.getPrice(), v.getDescription(), v.getStatus().name(), 
+                		Categories.Vehicle.name(), v.getRegisteration().getYear(),
+                		v.getCondition().name(), v.getMake(), (int)v.getKMdriven(), (float)6.9);
                 break;
             default:
                 break;
@@ -296,4 +322,43 @@ public class UserAccount extends Account {
 
 
     }
+
+	public void publishedMenu() {
+		OLX.terminal.println("================Logged In User ads viewing menu================");
+		if(this.published.size() == 0) {
+			OLX.terminal.println("You do not have any ads");
+			return;
+		}
+		
+		for(int i = 0; i < this.published.size(); i++) {
+			OLX.terminal.printf("No: %d Title: %s\n", i, this.published.get(i).getTittle());
+		}
+		
+		OLX.terminal.println("Press -1 to go back");
+		OLX.terminal.println("Press 1 to edit ads");
+		OLX.terminal.println("Press 2 to delete ads");
+		
+		int userInput = textIO.newIntInputReader().withMinVal(-1).withMaxVal(2).withDefaultValue(-1).read("Input");
+		
+		if(userInput == 1) {
+			int adNumber = textIO.newIntInputReader().withMinVal(0).withMaxVal(this.published.size() - 1).read("Ad Number To Delete");
+			this.published.get(adNumber).editAdvertisement();
+			OLX.terminal.println("Ad has been edited successfully");
+			this.publishedMenu();
+		}
+		else if(userInput == 2) {
+			int adNumber = textIO.newIntInputReader().withMinVal(0).withMaxVal(this.published.size() - 1).read("Ad Number To Delete");
+			this.published.remove(adNumber);
+			OLX.terminal.println("Ad has been deleted successfully");
+			this.publishedMenu();
+		}
+		
+	}
+
+	public void viewLikedAds() {
+		for(Advertisement ad : likedAds) {
+			ad.viewAdvertisement();
+		}
+		
+	}
 }

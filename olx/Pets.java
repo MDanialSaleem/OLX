@@ -39,7 +39,15 @@ public class Pets extends Advertisement{
 
     }
 
-    @Override
+    public String getBreed() {
+		return breed;
+	}
+
+	public void setBreed(String breed) {
+		this.breed = breed;
+	}
+
+	@Override
     public boolean satisfyQuery(QueryBuilder builder) {
 
         boolean satisfies = true;

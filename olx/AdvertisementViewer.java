@@ -9,10 +9,10 @@ import org.beryx.textio.TextIoFactory;
 
 
 public class AdvertisementViewer {
-	private ArrayList<Advertisement> list;
+	private List<Advertisement> list;
 	
 	private TextIO textIO = TextIoFactory.getTextIO();
-	public AdvertisementViewer(ArrayList<Advertisement> list) {
+	public AdvertisementViewer(List<Advertisement> list) {
 		this.list = list;
 	}
 	
@@ -52,9 +52,10 @@ public class AdvertisementViewer {
 		
 	}
 	public void display() {
+		OLX.terminal.println("=======SHOWING AD RESULTS=====");
 		for(int i = 0; i < list.size(); i++) {
 			Advertisement ad = list.get(i);
-			OLX.terminal.printf("%d %s %d", i, ad.getTittle(), ad.getPrice());
+			OLX.terminal.printf("No: %d Title: %s Price: %d\n", i, ad.getTittle(), ad.getPrice());
 		}
 		
 		OLX.terminal.println("Press the number of ad to view that ad.");
@@ -65,7 +66,7 @@ public class AdvertisementViewer {
 		        .withDefaultValue(-1)
 		        .read("Input");
 		
-		if(input > 0) {
+		if(input >= 0) {
 			displayAd(list.get(input));
 			display();
 		}

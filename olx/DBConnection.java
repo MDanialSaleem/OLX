@@ -233,20 +233,20 @@ public class DBConnection {
 
     void addFollower(String FollowerEmail, String FolloweeEmail) {
         try {
-            String s = "SELECT UserID From Users where email = ?";
-            PreparedStatement prepStmt = con.prepareStatement(s);
-            prepStmt.setString(1, FollowerEmail);
-            ResultSet rs = prepStmt.executeQuery();
+            String s1 = "SELECT * From Users where email = ?";
+            PreparedStatement prepStmt1 = con.prepareStatement(s1);
+            prepStmt1.setString(1, FollowerEmail);
+            ResultSet rs = prepStmt1.executeQuery();
             rs.next();
             int Follower = rs.getInt(1);
 
-            String s2 = "SELECT UserID From Users where email = ?";
+            String s2 = "SELECT * From Users where email = ?";
             PreparedStatement prepStmt2 = con.prepareStatement(s2);
             prepStmt2.setString(1, FolloweeEmail);
             ResultSet rs2 = prepStmt2.executeQuery();
-            rs.next();
+            rs2.next();
             int Followee = rs2.getInt(1);
-
+            
             String query = "insert into Followings(FollowerID,FolloweeID) values(?,?)";
 
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -276,19 +276,38 @@ public class DBConnection {
             ResultSet rs = prepStmt.executeQuery();
             rs.next();
             int AdID = rs.getInt(1);
-            String query = "insert into Likes(AdvertisementID) values(?,?)";
+            String query = "insert into Likes values(?,?)";
 
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(2, AdID);
             preparedStmt.setInt(1, uId);
-
-
             preparedStmt.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
+    
+    List<String> getFolloweeEmails(String userEmail){
+    	try
+    	{
+            String s2 = "select followee.email from users follower join followings on follower.userid = followings.followerid join users followee on followings.followeeid = followee.userid where follower.email = ?";
+            PreparedStatement prepStmt2 = con.prepareStatement(s2);
+            prepStmt2.setString(1, userEmail);
+            ResultSet rs2 = prepStmt2.executeQuery();
+            List<String> emails = new ArrayList<>();
+            while(rs2.next()) {
+            	emails.add(rs2.getString(1));
+            }
+            return emails;
+    	}
+    	catch(Exception e)
+    	{
+    		System.out.println(e);
+    	}
+
+    	return null;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // retrieve specific user details
     UserAccount getUserDetails(String userEmail) throws SQLException {
@@ -454,7 +473,7 @@ public class DBConnection {
     // Search query
     List<Advertisement> Search (String Title, String cat) throws SQLException {
         List<Advertisement> retAds = new ArrayList<>();
-        if (cat.equalsIgnoreCase("Jobs")) {
+        if (cat.equalsIgnoreCase(Categories.Job.name())) {
             String s = "Select * from Advertisement a join Jobs j on a.advertisementID=j.AdvertisementID where title LIKE '%'+?+'%'";
             PreparedStatement prepStmt = con.prepareStatement(s);
             prepStmt.setString(1, Title);

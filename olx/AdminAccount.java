@@ -27,6 +27,8 @@ public class AdminAccount extends Account {
 		super(string, date.toInstant()
 			      .atZone(ZoneId.systemDefault())
 			      .toLocalDate(), string2, string3, string4);
+		adsWaitingList = new ArrayList<>();
+		reportsWaitingList = new ArrayList<>();
 	}
 
 
@@ -39,38 +41,53 @@ public class AdminAccount extends Account {
 	
 	public void viewAdsForApproval() {
 		this.hasWaitingAds = false;
-		for(int i = 1; i <= adsWaitingList.size(); i++) {
+		if(adsWaitingList.size() == 0) {
+			OLX.terminal.println("No ads to view");
+			return;
+		}
+		for(int i = 0; i < adsWaitingList.size(); i++) {
 			OLX.terminal.println(i + ": " + adsWaitingList.get(i).getTittle());
 		}
-
-
-		int userInput = textIO.newIntInputReader().withMinVal(1).withMaxVal( adsWaitingList.size()).read("Enter Ad no"); //get this from user usint TextIO with suitable up limit decided by size of list.
+		int userInput = textIO.newIntInputReader().withMinVal(-1).withMaxVal( adsWaitingList.size() - 1).read("Ad no[-1 to go back]"); //get this from user usint TextIO with suitable up limit decided by size of list.
+		if(userInput == -1) {
+			return;
+		}
 		decideApproval(adsWaitingList.get(userInput));
 	}
 	
 	public void viewReportsForApproval() {
-		for(int i = 1; i <= reportsWaitingList.size(); i++) {
+		if(this.reportsWaitingList.size() == 0) {
+			OLX.terminal.println("No reports to view");
+			return;
+		}
+		for(int i = 0; i < reportsWaitingList.size(); i++) {
 			OLX.terminal.println(i +": " + reportsWaitingList.get(i).getAd().getTittle());
 		}
 
-		int userInput =textIO.newIntInputReader().withMinVal(1).withMaxVal( reportsWaitingList.size()).read("Enter Report no"); //get this from user usint TextIO with suitable up limit decided by size of list.
-
+		int userInput =textIO.newIntInputReader().withMinVal(-1).withMaxVal( reportsWaitingList.size() - 1).read("Report no[-1 to go back]"); //get this from user usint TextIO with suitable up limit decided by size of list.
+		if(userInput == -1) {
+			return;
+		}
 		decideReport(reportsWaitingList.get(userInput));
 		
 	}
 	
 	public void decideApproval(Advertisement ad) {
 		ad.viewAdvertisement();
-		boolean approval =  textIO.newBooleanInputReader().read("Approval, true or false");
+		boolean approval =  textIO.newBooleanInputReader().read("Approval");
+		OLX.terminal.printf("Ad has been %s", approval ? "Approved" : "Disapproved");
 		ad.approveDisapprove(approval, this);
 		adsWaitingList.remove(ad);
+		this.viewAdsForApproval();
 	}
 	
 	public void decideReport(Report report) {
 		report.viewReport();
-		boolean decision = textIO.newBooleanInputReader().read("Decision, true of false");
+		boolean decision = textIO.newBooleanInputReader().read("Decision");
+		OLX.terminal.printf("Report has been %s", decision ? "Approved" : "Disapproved");
 		report.decideReport(decision, this);
 		reportsWaitingList.remove(report);
+		this.viewReportsForApproval();
 	}
 	
 	

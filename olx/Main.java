@@ -54,7 +54,7 @@ public class Main {
 				}
 				else
 				{
-					OLX.terminal.println("User Successfully Logged in");
+					OLX.terminal.println("Admin Successfully Logged in");
 				}
 				break;
     		case 4:
@@ -63,14 +63,16 @@ public class Main {
     		}
     	}
     	else if(loggedInUser != null){
-    		OLX.terminal.println("Press 1 to publish as Ad.");
+    		OLX.terminal.println("Press 1 to publish Ad.");
     		OLX.terminal.println("Press 2 to see your published Ads");
     		OLX.terminal.println("Press 3 to search");
-    		OLX.terminal.println("Press 4 to Log out.");
+    		OLX.terminal.println("Press 4 to see follower ads");
+    		OLX.terminal.println("Press 5 to see liked ads");
+    		OLX.terminal.println("Press 6 to Log out.");
     		
     		int userInput = textIO.newIntInputReader()
     				.withMinVal(1)
-    				.withMaxVal(4)
+    				.withMaxVal(6)
     				.read("Input");
     		
     		switch(userInput) {
@@ -78,12 +80,18 @@ public class Main {
     			OLX.getInstance().getCurrentUserAccount().createAdvertisement();
     			break;
     		case 2:
-    			OLX.getInstance().getCurrentUserAccount().printPublishedAds();
+    			OLX.getInstance().getCurrentUserAccount().publishedMenu();
     			break;
     		case 3:
     			Search();
     			break;
     		case 4:
+    			OLX.getInstance().getCurrentUserAccount().viewFollowerAds();
+    			break;
+    		case 5:
+    			OLX.getInstance().getCurrentUserAccount().viewLikedAds();
+    			break;
+    		case 6:
     			OLX.getInstance().logOutUser();
     			break;
  
@@ -94,9 +102,10 @@ public class Main {
     		OLX.terminal.println("Press 1 to view ads for approval");
     		OLX.terminal.println("Press 2 to view reports");
     		OLX.terminal.println("Press 3 to Log out.");
+    		
     		int userInput = textIO.newIntInputReader()
     				.withMinVal(1)
-    				.withMaxVal(4)
+    				.withMaxVal(3)
     				.read("Input");
     		
     		switch(userInput) {
@@ -115,32 +124,45 @@ public class Main {
     }
 	
 	public static void Search() {
-		System.out.println("Welcome to search");
+		OLX.terminal.println("Welcome to search");
 		String category = textIO.newEnumInputReader(Categories.class).read("Please choose the category").name();
 		String searchKeyWord = textIO.newStringInputReader().read("Search keyword: ");
 		
-		
-		//QUERY DB TO GET RESULTS HERE.
-		QueryBuilder builder = new QueryBuilder();
-		
-		System.out.println("Now enter filters. If you do not want to specify a filter, leave it empty");
-		
-		int priceUpBound = textIO.newIntInputReader()
-				.withDefaultValue(Integer.MAX_VALUE)
-				.read("Price upper bound");
-		int priceLowerBound = textIO.newIntInputReader()
-				.withMaxVal(Integer.MAX_VALUE - 1)
-				.withDefaultValue(0)
-				.read("Price Lower Bound");
-		
-		if(priceUpBound != Integer.MAX_VALUE && priceLowerBound != 0) {
-			builder.addIntFilter(new RangeFilter<Integer>("Price", priceLowerBound, priceUpBound));
+		try {
+			List<Advertisement> adsReturned = OLX.DBCON.Search(searchKeyWord, category);
+				//QUERY DB TO GET RESULTS HERE.
+				QueryBuilder builder = new QueryBuilder(adsReturned);
+				OLX.terminal.println("Now enter filters. If you do not want to specify a filter, leave it empty");
+				int priceUpBound = textIO.newIntInputReader()
+						.withDefaultValue(Integer.MAX_VALUE)
+						.read("Price upper bound");
+				int priceLowerBound = textIO.newIntInputReader()
+						.withMaxVal(Integer.MAX_VALUE - 1)
+						.withDefaultValue(0)
+						.read("Price Lower Bound");
+				
+				if(priceUpBound != Integer.MAX_VALUE && priceLowerBound != 0) {
+					builder.addIntFilter(new RangeFilter<Integer>("Price", priceLowerBound, priceUpBound));
+				}
+				
+				AdvertisementViewer viewer = new AdvertisementViewer(builder.getResults());
+				viewer.display();
+
 		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+
 		
-		//other category specific filters here.
+		
+
 	}
 		
 		
-		
+	public static void main2(String[] args) {
+		for(String s : OLX.getInstance().DBCON.getFolloweeEmails("hadi@gmail.com")) {
+			System.out.println(s);
+		}
+	}
     
 }
