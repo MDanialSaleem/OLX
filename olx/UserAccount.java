@@ -51,9 +51,16 @@ public class UserAccount extends Account {
     }
 
 	public UserAccount(String name, Date date, String email, String number, String password, Location loc2) {
+
 		super(name, date.toInstant()
 			      .atZone(ZoneId.systemDefault())
 			      .toLocalDate(), email, number, password);
+		
+        this.published = new ArrayList<Advertisement>();
+        this.likedAds = new ArrayList<Advertisement>();
+        reportedAds = new ArrayList<Report>();
+        Followers = new ArrayList<UserAccount>();
+        ChatsInitiated = new ArrayList<Chat>();
 		this.loc = loc2;
 	}
 
@@ -165,11 +172,9 @@ public class UserAccount extends Account {
     }
 
     public void printPublishedAds(){
-        for(int i=0;i<published.size();i++)
-        {
-            OLX.terminal.println("Press" + i +" to edit that Advertisement");
-            published.get(i).viewAdvertisement();
-        }
+    	for(Advertisement ad : published) {
+    		ad.viewAdvertisement();
+    	}
     }
 
     public void viewUserProfile() {
@@ -203,6 +208,8 @@ public class UserAccount extends Account {
                 e = new Electronics(title, price, description, this.loc, this, cond, make);
                 OLX.getInstance().addAdvertisement(e);
                 this.published.add(e);
+                OLX.DBCON.insertAdvertisementElectronics(e.getCreator().getEmail(),
+                		e.getTittle(), e.getPrice(), e.getDescription(), e.getStatus().name(), Categories.Electronic.name(), e.getCondition().name(), e.getMake());
                 break;
             case 2:
                 int b = textIO.newIntInputReader().read("No of Bedrooms");
@@ -214,7 +221,10 @@ public class UserAccount extends Account {
                 h = new House(title, price, description, this.loc, this, a,Prop, b, b1);
                 OLX.getInstance().addAdvertisement(h);
                 this.published.add(h);
+                OLX.DBCON.insertAdvertisementHouse(h.getCreator().getEmail(), h.getTittle(), h.getPrice(), h.getDescription(),
+                		h.getStatus().name(), Categories.House.name(), h.getNoOfBedrooms(), h.getNoOfBathrooms());
                 break;
+
             case 3:
                 Jobs j;
                 int n = textIO.newIntInputReader().read("No of Positions");
@@ -264,9 +274,9 @@ public class UserAccount extends Account {
 
                 v = new Vehicle(title, price, description, this.loc, this, make2, y, cond2, d1, f, km);
                 OLX.getInstance().addAdvertisement(v);
+                this.published.add(v);
                 break;
             default:
-
                 break;
 
         }

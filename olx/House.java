@@ -13,7 +13,19 @@ public class House extends Property {
     int NoOfBedrooms;
     int NoOfBathrooms;
 
-    TextIO textIO = TextIoFactory.getTextIO();
+    public int getNoOfBedrooms() {
+		return NoOfBedrooms;
+	}
+	public void setNoOfBedrooms(int noOfBedrooms) {
+		NoOfBedrooms = noOfBedrooms;
+	}
+	public int getNoOfBathrooms() {
+		return NoOfBathrooms;
+	}
+	public void setNoOfBathrooms(int noOfBathrooms) {
+		NoOfBathrooms = noOfBathrooms;
+	}
+	TextIO textIO = TextIoFactory.getTextIO();
 
     public House(String tittle, int price, String description, Location loc, UserAccount creator, int areaUnits, PropertyType propertyType, int noOfBedrooms, int noOfBathrooms) {
         super( tittle, price, description, loc,creator, areaUnits, propertyType);

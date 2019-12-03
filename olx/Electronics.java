@@ -28,6 +28,26 @@ public class Electronics extends Advertisement {
 		Make = make;
 	}
 
+	public Condition getCondition() {
+		return condition;
+	}
+
+
+	public void setCondition(Condition condition) {
+		this.condition = condition;
+	}
+
+
+	public String getMake() {
+		return Make;
+	}
+
+
+	public void setMake(String make) {
+		Make = make;
+	}
+
+
 	@Override
 	public boolean satisfyQuery(QueryBuilder builder) {
 

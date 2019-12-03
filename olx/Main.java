@@ -75,6 +75,7 @@ public class Main {
     		
     		switch(userInput) {
     		case 1:
+    			OLX.getInstance().getCurrentUserAccount().createAdvertisement();
     			break;
     		case 2:
     			OLX.getInstance().getCurrentUserAccount().printPublishedAds();
