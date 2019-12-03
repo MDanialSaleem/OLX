@@ -1,5 +1,4 @@
 package olx;
-import jdk.jfr.Category;
 
 import java.sql.*;
 
@@ -9,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class dbCon {
+public class DBConnection {
     Connection con;
     Statement stmt;
 
@@ -20,7 +19,7 @@ public class dbCon {
 
     // setup connection
     // need to be modified acc to your credentials.
-    dbCon() //cons
+    DBConnection() //cons
     {
         try {
             String s = "jdbc:sqlserver://DESKTOP-795D473:1433;databaseName=OLX";
