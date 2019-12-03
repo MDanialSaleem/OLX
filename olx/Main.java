@@ -120,7 +120,19 @@ public class Main {
 		String category = textIO.newEnumInputReader(Categories.class).read("Please choose the category").name();
 		String searchKeyWord = textIO.newStringInputReader().read("Search keyword: ");
 		
+		try {
+			List<Advertisement> ls = OLX.DBCON.Search(searchKeyWord, category);
+			for(Advertisement l : ls) {
+				l.viewAdvertisement();
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+
 		
+		
+		/*
 		//QUERY DB TO GET RESULTS HERE.
 		QueryBuilder builder = new QueryBuilder();
 		
@@ -137,6 +149,7 @@ public class Main {
 		if(priceUpBound != Integer.MAX_VALUE && priceLowerBound != 0) {
 			builder.addIntFilter(new RangeFilter<Integer>("Price", priceLowerBound, priceUpBound));
 		}
+		*/
 		
 		//other category specific filters here.
 	}

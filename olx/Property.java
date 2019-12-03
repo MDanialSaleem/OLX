@@ -46,7 +46,15 @@ public class Property extends Advertisement{
 
     }
 
-    @Override
+    public PropertyType getPropertyType() {
+		return propertyType;
+	}
+
+	public void setPropertyType(PropertyType propertyType) {
+		this.propertyType = propertyType;
+	}
+
+	@Override
     public boolean satisfyQuery(QueryBuilder builder) {
 
         boolean satisfies = true;

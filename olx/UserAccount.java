@@ -233,6 +233,8 @@ public class UserAccount extends Account {
                 j = new Jobs(title, price, description, this.loc, this, n, cn, d);
                 OLX.getInstance().addAdvertisement(j);
                 this.published.add(j);
+                OLX.DBCON.insertAdvertisementJobs(j.getCreator().getEmail(), j.getTittle(),
+                		j.getPrice(), j.getDescription(), j.getStatus().name(), Categories.Job.name(), j.getCompanyName(), j.getDescription());
                 break;
 
             case 4:
@@ -243,6 +245,8 @@ public class UserAccount extends Account {
                 m = new Mobile(title, price, description, this.loc, this, make1, cond1);
                 OLX.getInstance().addAdvertisement(m);
                 this.published.add(m);
+                OLX.DBCON.insertAdvertisementMobile(m.getCreator().getEmail(), m.getTittle(), m.getPrice(), m.getDescription(),
+                		m.getStatus().name(), Categories.Mobile.name(), m.getCondition().name(), m.getMake());
                 break;
 
             case 5:
@@ -251,6 +255,9 @@ public class UserAccount extends Account {
                 p = new Pets(title, price, description, this.loc, this, breed);
                 OLX.getInstance().addAdvertisement(p);
                 this.published.add(p);
+                OLX.DBCON.insertAdvertisementPets(p.getCreator().getEmail(),
+                		p.getTittle(), p.getPrice(), p.getDescription(), p.getStatus().name(), 
+                		Categories.Pet.name(), p.getBreed());
                 break;
             case 6:
                 Property pr;
@@ -260,6 +267,9 @@ public class UserAccount extends Account {
                 pr = new Property(title, price, description, this.loc, this, a1, Prop1);
                 OLX.getInstance().addAdvertisement(pr);
                 this.published.add(pr);
+                OLX.DBCON.insertAdvertisementProperty(pr.getCreator().getEmail(), pr.getTittle(),
+                		pr.getPrice(), pr.getDescription(), pr.getStatus().name(), 
+                		Categories.Property.name(), pr.getPropertyType().name());
                 break;
             case 7:
                 Vehicle v;
@@ -275,6 +285,10 @@ public class UserAccount extends Account {
                 v = new Vehicle(title, price, description, this.loc, this, make2, y, cond2, d1, f, km);
                 OLX.getInstance().addAdvertisement(v);
                 this.published.add(v);
+                OLX.DBCON.insertAdvertisementVehicle(v.getCreator().getEmail(),
+                		v.getTittle(), v.getPrice(), v.getDescription(), v.getStatus().name(), 
+                		Categories.Vehicle.name(), v.getRegisteration().getYear(),
+                		v.getCondition().name(), v.getMake(), (int)v.getKMdriven(), (float)6.9);
                 break;
             default:
                 break;

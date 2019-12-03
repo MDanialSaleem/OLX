@@ -43,7 +43,55 @@ public class Vehicle extends Advertisement {
 
 
 
-    @Override
+    public String getMake() {
+		return make;
+	}
+
+	public void setMake(String make) {
+		this.make = make;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public Condition getCondition() {
+		return condition;
+	}
+
+	public void setCondition(Condition condition) {
+		this.condition = condition;
+	}
+
+	public Date getRegisteration() {
+		return registeration;
+	}
+
+	public void setRegisteration(Date registeration) {
+		this.registeration = registeration;
+	}
+
+	public Fuel getFuel() {
+		return fuel;
+	}
+
+	public void setFuel(Fuel fuel) {
+		this.fuel = fuel;
+	}
+
+	public float getKMdriven() {
+		return KMdriven;
+	}
+
+	public void setKMdriven(float kMdriven) {
+		KMdriven = kMdriven;
+	}
+
+	@Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
         OLX.terminal.println("Make "+make);

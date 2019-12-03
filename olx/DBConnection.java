@@ -454,7 +454,7 @@ public class DBConnection {
     // Search query
     List<Advertisement> Search (String Title, String cat) throws SQLException {
         List<Advertisement> retAds = new ArrayList<>();
-        if (cat.equalsIgnoreCase("Jobs")) {
+        if (cat.equalsIgnoreCase(Categories.Job.name())) {
             String s = "Select * from Advertisement a join Jobs j on a.advertisementID=j.AdvertisementID where title LIKE '%'+?+'%'";
             PreparedStatement prepStmt = con.prepareStatement(s);
             prepStmt.setString(1, Title);

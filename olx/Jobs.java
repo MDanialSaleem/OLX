@@ -33,7 +33,27 @@ public class Jobs extends Advertisement {
         OLX.terminal.println("Number of Positions "+noOfPositions);
         OLX.terminal.println("Company Name "+companyName);
     }
-    @Override
+    
+    public int getNoOfPositions() {
+		return noOfPositions;
+	}
+	public void setNoOfPositions(int noOfPositions) {
+		this.noOfPositions = noOfPositions;
+	}
+	public String getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	
+	public String getDescription() {
+		return Description;
+	}
+	public void setDescription(String description) {
+		Description = description;
+	}
+	@Override
     public void editAdvertisement() {
 
 

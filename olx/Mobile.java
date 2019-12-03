@@ -46,7 +46,19 @@ public class Mobile extends Advertisement {
 
     }
 
-    @Override
+    public String getMake() {
+		return make;
+	}
+	public void setMake(String make) {
+		this.make = make;
+	}
+	public Condition getCondition() {
+		return condition;
+	}
+	public void setCondition(Condition condition) {
+		this.condition = condition;
+	}
+	@Override
     public boolean satisfyQuery(QueryBuilder builder) {
 
         boolean satisfies = true;
