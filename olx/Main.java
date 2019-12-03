@@ -67,11 +67,12 @@ public class Main {
     		OLX.terminal.println("Press 2 to see your published Ads");
     		OLX.terminal.println("Press 3 to search");
     		OLX.terminal.println("Press 4 to see follower ads");
-    		OLX.terminal.println("Press 5 to Log out.");
+    		OLX.terminal.println("Press 5 to see liked ads");
+    		OLX.terminal.println("Press 6 to Log out.");
     		
     		int userInput = textIO.newIntInputReader()
     				.withMinVal(1)
-    				.withMaxVal(5)
+    				.withMaxVal(6)
     				.read("Input");
     		
     		switch(userInput) {
@@ -88,6 +89,9 @@ public class Main {
     			OLX.getInstance().getCurrentUserAccount().viewFollowerAds();
     			break;
     		case 5:
+    			OLX.getInstance().getCurrentUserAccount().viewLikedAds();
+    			break;
+    		case 6:
     			OLX.getInstance().logOutUser();
     			break;
  

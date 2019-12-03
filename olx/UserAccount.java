@@ -70,6 +70,7 @@ public class UserAccount extends Account {
     }
 
     public void likeAdvertisement(Advertisement ad) {
+    	OLX.DBCON.addLikes(this.Email, ad);
         likedAds.add(ad);
     }
 
@@ -350,6 +351,13 @@ public class UserAccount extends Account {
 			this.published.remove(adNumber);
 			OLX.terminal.println("Ad has been deleted successfully");
 			this.publishedMenu();
+		}
+		
+	}
+
+	public void viewLikedAds() {
+		for(Advertisement ad : likedAds) {
+			ad.viewAdvertisement();
 		}
 		
 	}

@@ -240,7 +240,7 @@ public class Advertisement {
 
 
     public Report reportAdvertisement() {
-    	return null;
+    	return this.createReport(); //deprecate this function in next update.
     }
 
 }

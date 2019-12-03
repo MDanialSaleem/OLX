@@ -276,13 +276,11 @@ public class DBConnection {
             ResultSet rs = prepStmt.executeQuery();
             rs.next();
             int AdID = rs.getInt(1);
-            String query = "insert into Likes(AdvertisementID) values(?,?)";
+            String query = "insert into Likes values(?,?)";
 
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(2, AdID);
             preparedStmt.setInt(1, uId);
-
-
             preparedStmt.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
