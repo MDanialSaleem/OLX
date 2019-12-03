@@ -105,6 +105,7 @@ public class UserAccount extends Account {
     }
 
     public void addFollower(UserAccount user) {
+    	OLX.DBCON.addFollower(user.Email, this.Email);
         Followers.add(user);
     }
 
@@ -168,7 +169,7 @@ public class UserAccount extends Account {
 
     public void viewFollowerAds() {
         this.hasUnopenedUpdates = false;
-        //implement view here.
+        
     }
 
     public void printPublishedAds(){
@@ -223,8 +224,6 @@ public class UserAccount extends Account {
                 h = new House(title, price, description, this.loc, this, a,Prop, b, b1);
                 OLX.getInstance().addAdvertisement(h);
                 this.published.add(h);
-                OLX.DBCON.insertAdvertisementHouse(h.getCreator().getEmail(), h.getTittle(), h.getPrice(), h.getDescription(),
-                		h.getStatus().name(), Categories.House.name(), h.getNoOfBedrooms(), h.getNoOfBathrooms());
                 break;
 
             case 3:

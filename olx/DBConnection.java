@@ -233,20 +233,20 @@ public class DBConnection {
 
     void addFollower(String FollowerEmail, String FolloweeEmail) {
         try {
-            String s = "SELECT UserID From Users where email = ?";
-            PreparedStatement prepStmt = con.prepareStatement(s);
-            prepStmt.setString(1, FollowerEmail);
-            ResultSet rs = prepStmt.executeQuery();
+            String s1 = "SELECT * From Users where email = ?";
+            PreparedStatement prepStmt1 = con.prepareStatement(s1);
+            prepStmt1.setString(1, FollowerEmail);
+            ResultSet rs = prepStmt1.executeQuery();
             rs.next();
             int Follower = rs.getInt(1);
 
-            String s2 = "SELECT UserID From Users where email = ?";
+            String s2 = "SELECT * From Users where email = ?";
             PreparedStatement prepStmt2 = con.prepareStatement(s2);
             prepStmt2.setString(1, FolloweeEmail);
             ResultSet rs2 = prepStmt2.executeQuery();
-            rs.next();
+            rs2.next();
             int Followee = rs2.getInt(1);
-
+            
             String query = "insert into Followings(FollowerID,FolloweeID) values(?,?)";
 
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -289,6 +289,10 @@ public class DBConnection {
         }
     }
 
+    
+    List<String> getFolloweeEmails(String userEmail){
+    	return null;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // retrieve specific user details
     UserAccount getUserDetails(String userEmail) throws SQLException {

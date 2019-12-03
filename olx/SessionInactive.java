@@ -38,7 +38,6 @@ public class SessionInactive extends SessionState {
 					return true;
 				}
 				else {
-					OLX.terminal.println("Wrong Credentials");
 					return false;
 				}
 			}
@@ -50,8 +49,7 @@ public class SessionInactive extends SessionState {
 			
 		}
 		else {
-			OLX.terminal.println("Wrong Credentials");
-			return true;
+			return false;
 		}
 
 	}

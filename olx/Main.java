@@ -54,7 +54,7 @@ public class Main {
 				}
 				else
 				{
-					OLX.terminal.println("User Successfully Logged in");
+					OLX.terminal.println("Admin Successfully Logged in");
 				}
 				break;
     		case 4:
@@ -63,14 +63,15 @@ public class Main {
     		}
     	}
     	else if(loggedInUser != null){
-    		OLX.terminal.println("Press 1 to publish as Ad.");
+    		OLX.terminal.println("Press 1 to publish Ad.");
     		OLX.terminal.println("Press 2 to see your published Ads");
     		OLX.terminal.println("Press 3 to search");
-    		OLX.terminal.println("Press 4 to Log out.");
+    		OLX.terminal.println("Press 4 to see follower ads");
+    		OLX.terminal.println("Press 5 to Log out.");
     		
     		int userInput = textIO.newIntInputReader()
     				.withMinVal(1)
-    				.withMaxVal(4)
+    				.withMaxVal(5)
     				.read("Input");
     		
     		switch(userInput) {
@@ -84,6 +85,9 @@ public class Main {
     			Search();
     			break;
     		case 4:
+    			OLX.getInstance().getCurrentUserAccount().viewFollowerAds();
+    			break;
+    		case 5:
     			OLX.getInstance().logOutUser();
     			break;
  
@@ -151,6 +155,8 @@ public class Main {
 	}
 		
 		
-		
+	public static void main2(String[] args) {
+		OLX.DBCON.addFollower("dan@gmail.com", "hadi@gmail.com");
+	}
     
 }

@@ -73,6 +73,7 @@ public class Advertisement {
     }
 
     public void viewAdvertisement() {
+    	OLX.terminal.println("=========VIEWING ADVERTISEMENT DETAILS=========");
         OLX.terminal.println("Title "+tittle);
         OLX.terminal.println("Price "+price);
         OLX.terminal.println("Type "+type);
