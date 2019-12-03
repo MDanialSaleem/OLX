@@ -49,6 +49,7 @@ public class OLX {
     }
 
     public void addAdvertisement(Advertisement ad) {
+    	this.getAdminForApproval().addAdForApproval(ad);
         advertisements.add(ad);
     }
     public void addAccount(Account acc) {

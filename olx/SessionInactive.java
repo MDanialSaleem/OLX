@@ -61,7 +61,7 @@ public class SessionInactive extends SessionState {
 		String email =  textIO.newStringInputReader().withMinLength(1).read("Email");
 		String Pass = textIO.newStringInputReader().withMinLength(1).read("Password");
 
-		if(OLX.getInstance().getAdministrator().Email==email && OLX.getInstance().getAdministrator().Password==Pass)
+		if(OLX.getInstance().getAdministrator().Email.contentEquals(email) && OLX.getInstance().getAdministrator().Password.contentEquals(Pass))
 		{
 			OLX.getInstance().setState(new SessionAdmin());
 			OLX.getInstance().setActiveAccount(OLX.getInstance().getAdministrator());

@@ -94,9 +94,10 @@ public class Main {
     		OLX.terminal.println("Press 1 to view ads for approval");
     		OLX.terminal.println("Press 2 to view reports");
     		OLX.terminal.println("Press 3 to Log out.");
+    		
     		int userInput = textIO.newIntInputReader()
     				.withMinVal(1)
-    				.withMaxVal(4)
+    				.withMaxVal(3)
     				.read("Input");
     		
     		switch(userInput) {
