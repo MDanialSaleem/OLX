@@ -58,7 +58,7 @@ public class Main {
 				}
 				break;
     		case 4:
-    			
+    			Search();
     			break;
     		}
     	}
@@ -80,7 +80,7 @@ public class Main {
     			OLX.getInstance().getCurrentUserAccount().printPublishedAds();
     			break;
     		case 3:
-    			//implement search here.
+    			Search();
     			break;
     		case 4:
     			OLX.getInstance().logOutUser();
@@ -103,7 +103,7 @@ public class Main {
     			loggedInAdmin.viewAdsForApproval();
     			break;
     		case 2:
-    			loggedInAdmin.viewReports();
+    			loggedInAdmin.viewReportsForApproval();
     			break;
     		case 3:
     			OLX.getInstance().logOutUser();
@@ -112,5 +112,34 @@ public class Main {
     	
     	displayMenu();
     }
+	
+	public static void Search() {
+		System.out.println("Welcome to search");
+		String category = textIO.newEnumInputReader(Categories.class).read("Please choose the category").name();
+		String searchKeyWord = textIO.newStringInputReader().read("Search keyword: ");
+		
+		
+		//QUERY DB TO GET RESULTS HERE.
+		QueryBuilder builder = new QueryBuilder();
+		
+		System.out.println("Now enter filters. If you do not want to specify a filter, leave it empty");
+		
+		int priceUpBound = textIO.newIntInputReader()
+				.withDefaultValue(Integer.MAX_VALUE)
+				.read("Price upper bound");
+		int priceLowerBound = textIO.newIntInputReader()
+				.withMaxVal(Integer.MAX_VALUE - 1)
+				.withDefaultValue(0)
+				.read("Price Lower Bound");
+		
+		if(priceUpBound != Integer.MAX_VALUE && priceLowerBound != 0) {
+			builder.addIntFilter(new RangeFilter<Integer>("Price", priceLowerBound, priceUpBound));
+		}
+		
+		//other category specific filters here.
+		
+		
+		
+		
     
 }
