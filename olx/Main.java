@@ -79,7 +79,7 @@ public class Main {
     			OLX.getInstance().getCurrentUserAccount().createAdvertisement();
     			break;
     		case 2:
-    			OLX.getInstance().getCurrentUserAccount().printPublishedAds();
+    			OLX.getInstance().getCurrentUserAccount().publishedMenu();
     			break;
     		case 3:
     			Search();

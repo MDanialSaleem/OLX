@@ -77,8 +77,8 @@ public class UserAccount extends Account {
         reportedAds.add(report);
     }
 
-    public void deleteAdvertisement() {
-        //tobeimplemented.
+    public void deleteAdvertisement(Advertisement ad) {
+        this.published.remove(ad);
     }
 
     public void sendMessage(UserAccount account, String message) {
@@ -321,4 +321,36 @@ public class UserAccount extends Account {
 
 
     }
+
+	public void publishedMenu() {
+		OLX.terminal.println("================Logged In User ads viewing menu================");
+		if(this.published.size() == 0) {
+			OLX.terminal.println("You do not have any ads");
+			return;
+		}
+		
+		for(int i = 0; i < this.published.size(); i++) {
+			OLX.terminal.printf("No: %d Title: %s\n", i, this.published.get(i).getTittle());
+		}
+		
+		OLX.terminal.println("Press -1 to go back");
+		OLX.terminal.println("Press 1 to edit ads");
+		OLX.terminal.println("Press 2 to delete ads");
+		
+		int userInput = textIO.newIntInputReader().withMinVal(-1).withMaxVal(2).withDefaultValue(-1).read("Input");
+		
+		if(userInput == 1) {
+			int adNumber = textIO.newIntInputReader().withMinVal(0).withMaxVal(this.published.size() - 1).read("Ad Number To Delete");
+			this.published.get(adNumber).editAdvertisement();
+			OLX.terminal.println("Ad has been edited successfully");
+			this.publishedMenu();
+		}
+		else if(userInput == 2) {
+			int adNumber = textIO.newIntInputReader().withMinVal(0).withMaxVal(this.published.size() - 1).read("Ad Number To Delete");
+			this.published.remove(adNumber);
+			OLX.terminal.println("Ad has been deleted successfully");
+			this.publishedMenu();
+		}
+		
+	}
 }
