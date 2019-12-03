@@ -47,10 +47,6 @@ public class OLX {
         return accounts;
     }
 
-    public List<Advertisement> search(String keyword) {
-        throw new IllegalStateException();
-    }
-
     public void addAdvertisement(Advertisement ad) {
         advertisements.add(ad);
     }
@@ -70,25 +66,17 @@ public class OLX {
 
     public boolean registerUser() {
             OLX.terminal.println("----------------------Register Now-----------------");
-            OLX.terminal.println("Enter your Name.");
-            String name=userInputText();
-            OLX.terminal.println("Enter your email.");
-            String email=userInputText();
-            OLX.terminal.println("Enter your phone number.");
-            String phone=userInputText();
-            OLX.terminal.println("Enter your password.");
-            String Password=userInputText();
-            OLX.terminal.println("Enter your block.");
-            String block=userInputText();
-            OLX.terminal.println("Enter your Society.");
-            String Society=userInputText();
-            OLX.terminal.println("Enter your city.");
-            String city=userInputText();
-            OLX.terminal.println("Enter your state.");
-            String state=userInputText();
+            String name = textIO.newStringInputReader().withMinLength(1).read("Username");
+            String password = textIO.newStringInputReader().withMinLength(8).withInputMasking(true).read("Password");
+            String email = textIO.newStringInputReader().withMinLength(8).read("Email");
+            String phone = textIO.newStringInputReader().withMinLength(11).read("Phone Number");
+            String block = textIO.newStringInputReader().withMinLength(1).read("Block");
+            String Society = textIO.newStringInputReader().withMinLength(1).read("Society");
+            String city = textIO.newStringInputReader().withMinLength(1).read("City");
+            String state = textIO.newStringInputReader().withMinLength(1).read("State");
             Location loc=new Location(block,Society,city,state);
             this.addLocation(loc);
-            this.addAccount(new UserAccount(name, LocalDate.now(),email,phone,Password,this,loc));
+            this.addAccount(new UserAccount(name, LocalDate.now(),email,phone,password,this,loc));
             return sessionState.logInUser();
     }
 
@@ -124,23 +112,14 @@ public class OLX {
     	return this.getAdministrator();  //duplicate functions. Marked for remova in next update.
     }
 
-    static int userInputInt(){
-        Scanner input=new Scanner(System.in);
-        return input.nextInt();
-    }
-
-    static String userInputText(){
-        Scanner input=new Scanner(System.in);
-        return input.next();
-    }
-
+    /*
     static Condition userInputCondition(){
         OLX.terminal.println("Enter 1 for New or 2 for used");
         Scanner input=new Scanner(System.in);
         int i=input.nextInt();
         if(i==1){return Condition.NEW;};
         return Condition.USED;
-    }
+    }*/
 
 
 }

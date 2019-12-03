@@ -48,7 +48,7 @@ public class AdminAccount extends Account {
 		decideApproval(adsWaitingList.get(userInput));
 	}
 	
-	public void viewReports() {
+	public void viewReportsForApproval() {
 		for(int i = 1; i <= reportsWaitingList.size(); i++) {
 			OLX.terminal.println(i +": " + reportsWaitingList.get(i).getAd().getTittle());
 		}
@@ -61,14 +61,14 @@ public class AdminAccount extends Account {
 	
 	public void decideApproval(Advertisement ad) {
 		ad.viewAdvertisement();
-		boolean approval =  textIO.newBooleanInputReader().read("Approval");
+		boolean approval =  textIO.newBooleanInputReader().read("Approval, true or false");
 		ad.approveDisapprove(approval, this);
 		adsWaitingList.remove(ad);
 	}
 	
 	public void decideReport(Report report) {
 		report.viewReport();
-		boolean decision = textIO.newBooleanInputReader().read("Decision");
+		boolean decision = textIO.newBooleanInputReader().read("Decision, true of false");
 		report.decideReport(decision, this);
 		reportsWaitingList.remove(report);
 	}

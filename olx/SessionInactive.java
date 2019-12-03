@@ -2,8 +2,13 @@ package olx;
 
 import java.util.Scanner;
 
+import org.slf4j.*;
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
+
 public class SessionInactive extends SessionState {
 
+	private TextIO textIO = TextIoFactory.getTextIO();
 	@Override
 	public UserAccount getCurrentUserAccount() {
 		return null;
@@ -17,11 +22,8 @@ public class SessionInactive extends SessionState {
 	@Override
 	public boolean logInUser() {
 		//TAKE APPRORIATE INPUT AND SET APPROPIATE STATE. (WHICH I NO DO IN LAB FINAL SO I GET A D+)//congratulations
-		OLX.terminal.println("----------------------Login Now-----------------");
-		OLX.terminal.println("Enter your email.");
-		String email=userInputText();
-		OLX.terminal.println("Enter your password.");
-		String Pass=userInputText();
+		String email =  textIO.newStringInputReader().withMinLength(1).read("Email");
+		String Pass = textIO.newStringInputReader().withMinLength(1).read("Password");
 
 		for(int i=0;i<OLX.getInstance().getAccounts().size();i++)
 		{
@@ -33,25 +35,11 @@ public class SessionInactive extends SessionState {
 		}
 		return false;
 	}
-
-	static int userInputInt(){
-		Scanner input=new Scanner(System.in);
-		return input.nextInt();
-	}
-
-	static String userInputText(){
-		Scanner input=new Scanner(System.in);
-		return input.next();
-	}
-
 	@Override
 	public boolean loginAdmin() {
 		//TAKE APPRORIATE INPUT AND SET APPROPIATE STATE. (WHICH I NO DO IN LAB FINAL SO I GET A D+)
-		OLX.terminal.println("----------------------Login Now-----------------");
-		OLX.terminal.println("Enter your email.");
-		String email=userInputText();
-		OLX.terminal.println("Enter your password.");
-		String Pass=userInputText();
+		String email =  textIO.newStringInputReader().withMinLength(1).read("Email");
+		String Pass = textIO.newStringInputReader().withMinLength(1).read("Password");
 
 		if(OLX.getInstance().getAdministrator().Email==email && OLX.getInstance().getAdministrator().Password==Pass)
 		{

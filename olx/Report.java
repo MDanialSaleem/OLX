@@ -77,7 +77,7 @@ public class Report {
           OLX.terminal.println("Category of report: ");
           OLX.terminal.println(category);
           OLX.terminal.println("Status of report: ");
-          OLX.terminal.println(status);
+          OLX.terminal.println(status.name());
           OLX.terminal.println("Title of Advertisement: ");
           OLX.terminal.println(ad.tittle); 
           OLX.terminal.println("Type of Advertisement: ");

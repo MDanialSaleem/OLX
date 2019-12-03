@@ -15,7 +15,7 @@ public class Message {
     public void viewMessage() {
     	OLX.terminal.println("===========");
     	OLX.terminal.println(sender.getName());
-    	OLX.terminal.println(time);
+    	OLX.terminal.println(time.toString());
     	OLX.terminal.println(text);
     	OLX.terminal.println("===========");
     	

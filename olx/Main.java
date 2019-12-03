@@ -58,7 +58,7 @@ public class Main {
 				}
 				break;
     		case 4:
-    			//handle search here.
+    			
     			break;
     		}
     	}
@@ -66,7 +66,7 @@ public class Main {
     		OLX.terminal.println("Press 1 to publish as Ad.");
     		OLX.terminal.println("Press 2 to see your published Ads");
     		OLX.terminal.println("Press 3 to search");
-    		OLX.terminal.println("Press 4 to Login as Log out.");
+    		OLX.terminal.println("Press 4 to Log out.");
     		
     		int userInput = textIO.newIntInputReader()
     				.withMinVal(1)
@@ -81,14 +81,33 @@ public class Main {
     			break;
     		case 3:
     			//implement search here.
+    			break;
     		case 4:
     			OLX.getInstance().logOutUser();
+    			break;
  
     		}
     		
     	}
     	else if(loggedInAdmin != null){
-    		//implement admin functionality here.
+    		OLX.terminal.println("Press 1 to view ads for approval");
+    		OLX.terminal.println("Press 2 to view reports");
+    		OLX.terminal.println("Press 3 to Log out.");
+    		int userInput = textIO.newIntInputReader()
+    				.withMinVal(1)
+    				.withMaxVal(4)
+    				.read("Input");
+    		
+    		switch(userInput) {
+    		case 1:
+    			loggedInAdmin.viewAdsForApproval();
+    			break;
+    		case 2:
+    			loggedInAdmin.viewReports();
+    			break;
+    		case 3:
+    			OLX.getInstance().logOutUser();
+    		}
     	}
     	
     	displayMenu();
