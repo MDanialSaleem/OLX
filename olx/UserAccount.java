@@ -169,6 +169,16 @@ public class UserAccount extends Account {
 
     public void viewFollowerAds() {
         this.hasUnopenedUpdates = false;
+        List<String> followeeEmails = OLX.DBCON.getFolloweeEmails(this.Email);
+        for(String email : followeeEmails) {
+        	try {
+        		OLX.DBCON.getUserDetails(email).printPublishedAds();
+        	}
+        	catch(Exception e) {
+        		System.out.println(e);
+        	}
+        	
+        }
         
     }
 

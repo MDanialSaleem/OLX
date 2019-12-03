@@ -156,7 +156,9 @@ public class Main {
 		
 		
 	public static void main2(String[] args) {
-		OLX.DBCON.addFollower("dan@gmail.com", "hadi@gmail.com");
+		for(String s : OLX.getInstance().DBCON.getFolloweeEmails("hadi@gmail.com")) {
+			System.out.println(s);
+		}
 	}
     
 }

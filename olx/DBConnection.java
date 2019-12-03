@@ -291,6 +291,23 @@ public class DBConnection {
 
     
     List<String> getFolloweeEmails(String userEmail){
+    	try
+    	{
+            String s2 = "select followee.email from users follower join followings on follower.userid = followings.followerid join users followee on followings.followeeid = followee.userid where follower.email = ?";
+            PreparedStatement prepStmt2 = con.prepareStatement(s2);
+            prepStmt2.setString(1, userEmail);
+            ResultSet rs2 = prepStmt2.executeQuery();
+            List<String> emails = new ArrayList<>();
+            while(rs2.next()) {
+            	emails.add(rs2.getString(1));
+            }
+            return emails;
+    	}
+    	catch(Exception e)
+    	{
+    		System.out.println(e);
+    	}
+
     	return null;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
