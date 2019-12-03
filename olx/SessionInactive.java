@@ -24,17 +24,36 @@ public class SessionInactive extends SessionState {
 		//TAKE APPRORIATE INPUT AND SET APPROPIATE STATE. (WHICH I NO DO IN LAB FINAL SO I GET A D+)//congratulations
 		OLX.getInstance().terminal.println("Login screen here");
 		String email =  textIO.newStringInputReader().withMinLength(1).read("Email");
-		String Pass = textIO.newStringInputReader().withMinLength(1).read("Password");
-
-		for(int i=0;i<OLX.getInstance().getAccounts().size();i++)
-		{
-			if(OLX.getInstance().getAccounts().get(i).Email.equalsIgnoreCase(email) && OLX.getInstance().getAccounts().get(i).Password.equalsIgnoreCase(Pass)) {
-				OLX.getInstance().setState(new SessionUser());
-				OLX.getInstance().setActiveAccount(OLX.getInstance().getAccounts().get(i));
-				return true;
+		String pass = textIO.newStringInputReader().withMinLength(1).read("Password");
+		
+		boolean exists = OLX.DBCON.checkUserInstance(email);
+		UserAccount account = null;
+		if(exists) {
+			try
+			{
+				account = OLX.DBCON.getUserDetails(email);
+				if(account.getPassword().equals(pass)){
+					OLX.getInstance().setActiveAccount(account);
+					OLX.getInstance().setState(new SessionUser());
+					return true;
+				}
+				else {
+					OLX.terminal.println("Wrong Credentials");
+					return false;
+				}
 			}
+			catch(Exception e) {
+				System.out.println(e);
+				return false;
+			}
+
+			
 		}
-		return false;
+		else {
+			OLX.terminal.println("Wrong Credentials");
+			return true;
+		}
+
 	}
 	@Override
 	public boolean loginAdmin() {
