@@ -22,6 +22,7 @@ public class SessionInactive extends SessionState {
 	@Override
 	public boolean logInUser() {
 		//TAKE APPRORIATE INPUT AND SET APPROPIATE STATE. (WHICH I NO DO IN LAB FINAL SO I GET A D+)//congratulations
+		OLX.getInstance().terminal.println("Login screen here");
 		String email =  textIO.newStringInputReader().withMinLength(1).read("Email");
 		String Pass = textIO.newStringInputReader().withMinLength(1).read("Password");
 

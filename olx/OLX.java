@@ -13,6 +13,7 @@ import org.beryx.textio.TextTerminal;
 public class OLX {
     private static TextIO textIO = TextIoFactory.getTextIO();
     public static TextTerminal terminal = textIO.getTextTerminal();
+    public static DBConnection DBCON = new DBConnection();
     
     private static OLX instance=null;
     private SessionState sessionState = new SessionInactive();
@@ -77,6 +78,7 @@ public class OLX {
             Location loc=new Location(block,Society,city,state);
             this.addLocation(loc);
             this.addAccount(new UserAccount(name, LocalDate.now(),email,phone,password,this,loc));
+            DBCON.insertUser(name, "empty", email, password, phone, block, Society, city, state);
             return sessionState.logInUser();
     }
 
