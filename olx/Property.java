@@ -28,8 +28,8 @@ public class Property extends Advertisement{
     @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
-        System.out.println("AreaUnits "+AreaUnits);
-        System.out.println("Property "+propertyType);
+        OLX.terminal.println("AreaUnits "+AreaUnits);
+        OLX.terminal.println("Property "+propertyType);
     }
     @Override
     public void editAdvertisement() {

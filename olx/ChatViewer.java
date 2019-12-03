@@ -15,7 +15,7 @@ public class ChatViewer {
 		this.sender = sender;
 		this.receiver = receiver;
 		
-		System.out.println("You are entering chat window. Enter \"===\" as message to exit this window");
+		OLX.terminal.println("You are entering chat window. Enter \"===\" as message to exit this window");
 		Chat exists = sender.getChatWithUser(receiver);
 		if(exists != null) {
 			exists.viewChat();

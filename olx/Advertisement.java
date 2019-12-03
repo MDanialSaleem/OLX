@@ -73,14 +73,14 @@ public class Advertisement {
     }
 
     public void viewAdvertisement() {
-        System.out.println("Title "+tittle);
-        System.out.println("Price "+price);
-        System.out.println("Type "+type);
-        System.out.println("Description "+description);
-        System.out.println("Views "+views);
-        System.out.println("Likes "+likes);
+        OLX.terminal.println("Title "+tittle);
+        OLX.terminal.println("Price "+price);
+        OLX.terminal.println("Type "+type);
+        OLX.terminal.println("Description "+description);
+        OLX.terminal.println("Views "+views);
+        OLX.terminal.println("Likes "+likes);
 
-        System.out.println("--------------------------------------------------");
+        OLX.terminal.println("--------------------------------------------------");
     }
 
     class Sortbyprice implements Comparator<Advertisement>
@@ -95,7 +95,7 @@ public class Advertisement {
 
 
     public void editAdvertisement() {
-        System.out.println("Enter new values or press \"Enter\" to skip");
+        OLX.terminal.println("Enter new values or press \"Enter\" to skip");
 
         String t = textIO.newStringInputReader().withDefaultValue(this.tittle).read("Title");
         this.setTittle(t);

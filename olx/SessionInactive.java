@@ -17,10 +17,10 @@ public class SessionInactive extends SessionState {
 	@Override
 	public boolean logInUser() {
 		//TAKE APPRORIATE INPUT AND SET APPROPIATE STATE. (WHICH I NO DO IN LAB FINAL SO I GET A D+)//congratulations
-		System.out.println("----------------------Login Now-----------------");
-		System.out.println("Enter your email.");
+		OLX.terminal.println("----------------------Login Now-----------------");
+		OLX.terminal.println("Enter your email.");
 		String email=userInputText();
-		System.out.println("Enter your password.");
+		OLX.terminal.println("Enter your password.");
 		String Pass=userInputText();
 
 		for(int i=0;i<OLX.getInstance().getAccounts().size();i++)
@@ -47,10 +47,10 @@ public class SessionInactive extends SessionState {
 	@Override
 	public boolean loginAdmin() {
 		//TAKE APPRORIATE INPUT AND SET APPROPIATE STATE. (WHICH I NO DO IN LAB FINAL SO I GET A D+)
-		System.out.println("----------------------Login Now-----------------");
-		System.out.println("Enter your email.");
+		OLX.terminal.println("----------------------Login Now-----------------");
+		OLX.terminal.println("Enter your email.");
 		String email=userInputText();
-		System.out.println("Enter your password.");
+		OLX.terminal.println("Enter your password.");
 		String Pass=userInputText();
 
 		if(OLX.getInstance().getAdministrator().Email==email && OLX.getInstance().getAdministrator().Password==Pass)

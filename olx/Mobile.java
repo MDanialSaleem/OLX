@@ -28,14 +28,14 @@ public class Mobile extends Advertisement {
     @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
-        System.out.println("Make "+make);
-        System.out.println("Condition "+condition);
+        OLX.terminal.println("Make "+make);
+        OLX.terminal.println("Condition "+condition);
     }
     @Override
     public void editAdvertisement() {
 
 
-        System.out.println("Enter new values or press \"Enter\" to skip");
+        OLX.terminal.println("Enter new values or press \"Enter\" to skip");
 
         super.editAdvertisement();
 

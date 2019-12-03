@@ -30,14 +30,14 @@ public class Jobs extends Advertisement {
     @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
-        System.out.println("Number of Positions "+noOfPositions);
-        System.out.println("Company Name "+companyName);
+        OLX.terminal.println("Number of Positions "+noOfPositions);
+        OLX.terminal.println("Company Name "+companyName);
     }
     @Override
     public void editAdvertisement() {
 
 
-        System.out.println("Enter new values or press \"Enter\" to skip");
+        OLX.terminal.println("Enter new values or press \"Enter\" to skip");
 
         super.editAdvertisement();
 

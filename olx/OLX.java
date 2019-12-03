@@ -8,10 +8,12 @@ import org.slf4j.*;
 
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
+import org.beryx.textio.TextTerminal;
 
 public class OLX {
-    TextIO textIO = TextIoFactory.getTextIO();
-
+    private static TextIO textIO = TextIoFactory.getTextIO();
+    public static TextTerminal terminal = textIO.getTextTerminal();
+    
     private static OLX instance=null;
     private SessionState sessionState = new SessionInactive();
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
@@ -67,22 +69,22 @@ public class OLX {
     }
 
     public boolean registerUser() {
-            System.out.println("----------------------Register Now-----------------");
-            System.out.println("Enter your Name.");
+            OLX.terminal.println("----------------------Register Now-----------------");
+            OLX.terminal.println("Enter your Name.");
             String name=userInputText();
-            System.out.println("Enter your email.");
+            OLX.terminal.println("Enter your email.");
             String email=userInputText();
-            System.out.println("Enter your phone number.");
+            OLX.terminal.println("Enter your phone number.");
             String phone=userInputText();
-            System.out.println("Enter your password.");
+            OLX.terminal.println("Enter your password.");
             String Password=userInputText();
-            System.out.println("Enter your block.");
+            OLX.terminal.println("Enter your block.");
             String block=userInputText();
-            System.out.println("Enter your Society.");
+            OLX.terminal.println("Enter your Society.");
             String Society=userInputText();
-            System.out.println("Enter your city.");
+            OLX.terminal.println("Enter your city.");
             String city=userInputText();
-            System.out.println("Enter your state.");
+            OLX.terminal.println("Enter your state.");
             String state=userInputText();
             Location loc=new Location(block,Society,city,state);
             this.addLocation(loc);
@@ -133,7 +135,7 @@ public class OLX {
     }
 
     static Condition userInputCondition(){
-        System.out.println("Enter 1 for New or 2 for used");
+        OLX.terminal.println("Enter 1 for New or 2 for used");
         Scanner input=new Scanner(System.in);
         int i=input.nextInt();
         if(i==1){return Condition.NEW;};

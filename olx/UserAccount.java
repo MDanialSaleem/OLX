@@ -145,15 +145,15 @@ public class UserAccount extends Account {
           }
           if(getThisPt==1)
           {
-              System.out.println(i + "- " + getChat.getSecoundParticipant().Name);
+              OLX.terminal.println(i + "- " + getChat.getSecoundParticipant().Name);
           }
           else if(getThisPt==2)
           {
-               System.out.println(i + "- " + getChat.getFirstParticipant().Name);
+               OLX.terminal.println(i + "- " + getChat.getFirstParticipant().Name);
           
           }
-          System.out.println(getChat.getLatestMessage());
-          System.out.println(getChat.getTimeOfLatestMessage());
+          OLX.terminal.println(getChat.getLatestMessage());
+          OLX.terminal.println(getChat.getTimeOfLatestMessage());
           i++;
         }
       
@@ -167,7 +167,7 @@ public class UserAccount extends Account {
     public void printPublishedAds(){
         for(int i=0;i<published.size();i++)
         {
-            System.out.println("Press" + i +" to edit that Advertisement");
+            OLX.terminal.println("Press" + i +" to edit that Advertisement");
             published.get(i).viewAdvertisement();
         }
     }
@@ -182,13 +182,13 @@ public class UserAccount extends Account {
 
         String description = textIO.newStringInputReader().withMinLength(1).read("Description");
 
-        System.out.println("Press 1 for Electronics");
-        System.out.println("Press 2 for House");
-        System.out.println("Press 3 for Jobs");
-        System.out.println("Press 4 for Mobile");
-        System.out.println("Press 5 for Pets");
-        System.out.println("Press 6 for Property");
-        System.out.println("Press 7 for Vehicle");
+        OLX.terminal.println("Press 1 for Electronics");
+        OLX.terminal.println("Press 2 for House");
+        OLX.terminal.println("Press 3 for Jobs");
+        OLX.terminal.println("Press 4 for Mobile");
+        OLX.terminal.println("Press 5 for Pets");
+        OLX.terminal.println("Press 6 for Property");
+        OLX.terminal.println("Press 7 for Vehicle");
 
 
         //taking user input
@@ -275,14 +275,14 @@ public class UserAccount extends Account {
 
     public void viewProfile(){
 
-        System.out.println("Name : " + this.Name);
-        System.out.println("Join Date : " + this.JoinDate);
-        System.out.println("Email : " + this.Email);
-        System.out.println("Phone Number : " + this.PhoneNumber);
-        System.out.println("Password : " + this.Password);
-        System.out.println("Location : " + this.loc);
-        System.out.println("Has Unread Messages : " + this.hasUnreadMessages);
-        System.out.println("Has Unopened Updates : " + this.hasUnopenedUpdates);
+        OLX.terminal.println("Name : " + this.Name);
+        OLX.terminal.println("Join Date : " + this.JoinDate);
+        OLX.terminal.println("Email : " + this.Email);
+        OLX.terminal.println("Phone Number : " + this.PhoneNumber);
+        OLX.terminal.println("Password : " + this.Password);
+        OLX.terminal.println("Location : " + this.loc);
+        OLX.terminal.println("Has Unread Messages : " + this.hasUnreadMessages);
+        OLX.terminal.println("Has Unopened Updates : " + this.hasUnopenedUpdates);
 
 
     }

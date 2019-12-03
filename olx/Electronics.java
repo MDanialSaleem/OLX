@@ -45,15 +45,15 @@ public class Electronics extends Advertisement {
 	@Override
 	public void viewAdvertisement(){
 		super.viewAdvertisement();
-		System.out.println("Make "+this.Make);
-		System.out.println("Condition "+this.condition);
+		OLX.terminal.println("Make "+this.Make);
+		OLX.terminal.println("Condition "+this.condition);
 
 	}
 	@Override
 	public void editAdvertisement() {
 
 
-		System.out.println("Enter new values or press \"Enter\" to skip");
+		OLX.terminal.println("Enter new values or press \"Enter\" to skip");
 
 		super.editAdvertisement();
 

@@ -40,7 +40,7 @@ public class AdminAccount extends Account {
 	public void viewAdsForApproval() {
 		this.hasWaitingAds = false;
 		for(int i = 1; i <= adsWaitingList.size(); i++) {
-			System.out.println(i + ": " + adsWaitingList.get(i).getTittle());
+			OLX.terminal.println(i + ": " + adsWaitingList.get(i).getTittle());
 		}
 
 
@@ -50,7 +50,7 @@ public class AdminAccount extends Account {
 	
 	public void viewReports() {
 		for(int i = 1; i <= reportsWaitingList.size(); i++) {
-			System.out.println(i +": " + reportsWaitingList.get(i).getAd().getTittle());
+			OLX.terminal.println(i +": " + reportsWaitingList.get(i).getAd().getTittle());
 		}
 
 		int userInput =textIO.newIntInputReader().withMinVal(1).withMaxVal( reportsWaitingList.size()).read("Enter Report no"); //get this from user usint TextIO with suitable up limit decided by size of list.

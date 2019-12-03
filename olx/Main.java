@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
     	OLX application=OLX.getInstance();
     	application.setAdministrator(new AdminAccount("Hadi",LocalDate.now(),"hadi@gmail.com","123456","123"));
-    	System.out.println("Welcome to OLX.com");
+    	OLX.terminal.println("Welcome to OLX.com");
     	displayMenu();
 	}
     
@@ -22,11 +22,10 @@ public class Main {
     	AdminAccount loggedInAdmin = OLX.getInstance().getCurrentAdminAccount();
     	
     	if(loggedInUser == null && loggedInAdmin == null) {
-    		System.out.println("Press 1 to register as User.");
-    		System.out.println("Press 2 to Login as User.");
-    		System.out.println("Press 3 to Login as Admin.");
-    		System.out.println("Press 4 to search advertisements");
-    		
+    		OLX.terminal.println("Press 1 to register as User.");
+    		OLX.terminal.println("Press 2 to Login as User.");
+    		OLX.terminal.println("Press 3 to Login as Admin.");
+    		OLX.terminal.println("Press 4 to search advertisements");
     		int userInput = textIO.newIntInputReader()
     				.withMinVal(1)
     				.withMaxVal(4)
@@ -40,22 +39,22 @@ public class Main {
 				boolean ret=OLX.getInstance().logInUser();
 				if(ret==false)
 				{
-					System.out.println("Wrong Credentials");
+					OLX.terminal.println("Wrong Credentials");
 				}
 				else 
 				{
-					System.out.println("User Successfully Logged in");
+					OLX.terminal.println("User Successfully Logged in");
 				}
 				break;
     		case 3:
 				boolean ret2=OLX.getInstance().logInAdmin();
 				if(ret2 == false)
 				{
-					System.out.println("Wrong Credentials");
+					OLX.terminal.println("Wrong Credentials");
 				}
 				else
 				{
-					System.out.println("User Successfully Logged in");
+					OLX.terminal.println("User Successfully Logged in");
 				}
 				break;
     		case 4:
@@ -64,10 +63,10 @@ public class Main {
     		}
     	}
     	else if(loggedInUser != null){
-    		System.out.println("Press 1 to publish as Ad.");
-    		System.out.println("Press 2 to see your published Ads");
-    		System.out.println("Press 3 to search");
-    		System.out.println("Press 4 to Login as Log out.");
+    		OLX.terminal.println("Press 1 to publish as Ad.");
+    		OLX.terminal.println("Press 2 to see your published Ads");
+    		OLX.terminal.println("Press 3 to search");
+    		OLX.terminal.println("Press 4 to Login as Log out.");
     		
     		int userInput = textIO.newIntInputReader()
     				.withMinVal(1)

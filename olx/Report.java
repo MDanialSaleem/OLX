@@ -70,20 +70,20 @@ public class Report {
 
 		this.toString();
 
-          System.out.println("The details of Report of the Advertisement : ");  
+          OLX.terminal.println("The details of Report of the Advertisement : ");  
             
-	  System.out.println("Content of report: ");
-          System.out.println(content);
-          System.out.println("Category of report: ");
-          System.out.println(category);
-          System.out.println("Status of report: ");
-          System.out.println(status);
-          System.out.println("Title of Advertisement: ");
-          System.out.println(ad.tittle); 
-          System.out.println("Type of Advertisement: ");
-          System.out.println(ad.type);       
-          System.out.println("Description of Advertisement  : ");
-          System.out.println(ad.description);
+	  OLX.terminal.println("Content of report: ");
+          OLX.terminal.println(content);
+          OLX.terminal.println("Category of report: ");
+          OLX.terminal.println(category);
+          OLX.terminal.println("Status of report: ");
+          OLX.terminal.println(status);
+          OLX.terminal.println("Title of Advertisement: ");
+          OLX.terminal.println(ad.tittle); 
+          OLX.terminal.println("Type of Advertisement: ");
+          OLX.terminal.println(ad.type);       
+          OLX.terminal.println("Description of Advertisement  : ");
+          OLX.terminal.println(ad.description);
 
 	}
     

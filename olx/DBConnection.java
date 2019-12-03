@@ -28,7 +28,7 @@ public class DBConnection {
             stmt = con.createStatement();
 
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -45,7 +45,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -72,7 +72,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -97,7 +97,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -116,7 +116,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -134,7 +134,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -153,7 +153,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -171,7 +171,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -190,7 +190,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -209,7 +209,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -232,7 +232,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -260,7 +260,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -290,7 +290,7 @@ public class DBConnection {
 
             preparedStmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -422,10 +422,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Locale");
             while (rs.next()) {
                 locales.add(new Location(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -434,15 +434,15 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Users where category = User");
             while (rs.next()) {
                 accs.add(new UserAccount(rs.getString(2), rs.getDate(6), rs.getString(4), rs.getString(7), rs.getString(5), null));
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + "  " + rs.getDate(6) + "  " + rs.getString(7) + "  " + rs.getInt(8) + "  " + rs.getString(9) + "  " + rs.getString(10));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + "  " + rs.getDate(6) + "  " + rs.getString(7) + "  " + rs.getInt(8) + "  " + rs.getString(9) + "  " + rs.getString(10));
             }
             ResultSet rs2 = stmt.executeQuery("select * from Users where category = Admin");
             while (rs.next()) {
                 accs.add(new AdminAccount(rs.getString(2), rs.getDate(6), rs.getString(4), rs.getString(7), rs.getString(5)));
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + "  " + rs.getDate(6) + "  " + rs.getString(7) + "  " + rs.getInt(8) + "  " + rs.getString(9) + "  " + rs.getString(10));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + "  " + rs.getDate(6) + "  " + rs.getString(7) + "  " + rs.getInt(8) + "  " + rs.getString(9) + "  " + rs.getString(10));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -451,10 +451,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Advertisement ad join Jobs j on ad.advertisementID=j.AdvertisementID");
             while (rs.next()) {
                 ads.add(new Jobs(rs.getString(3), rs.getInt(4), rs.getString(5), null, null, 5, rs.getString(12), rs.getString(13)));
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3) + "  " + rs.getInt(4) + "  " + rs.getString(5) + "  " + rs.getInt(7) + "  " + rs.getInt(8) + "  " + rs.getString(9));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3) + "  " + rs.getInt(4) + "  " + rs.getString(5) + "  " + rs.getInt(7) + "  " + rs.getInt(8) + "  " + rs.getString(9));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -464,10 +464,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Advertisement ad join Pets j on ad.advertisementID=j.AdvertisementID");
             while (rs.next()) {
                 ads.add(new Pets(rs.getString(3), rs.getInt(4), rs.getString(5), null, null, rs.getString(12)));
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -476,10 +476,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Advertisement ad join Electronics j on ad.advertisementID=j.AdvertisementID");
             while (rs.next()) {
                 ads.add(new Electronics(rs.getString(3), rs.getInt(4), rs.getString(5), null, null, Condition.NEW, rs.getString(13)));
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3) + "  " + rs.getString(4));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3) + "  " + rs.getString(4));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -488,10 +488,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Advertisement ad join Property j on ad.advertisementID=j.AdvertisementID");
             while (rs.next()) {
                 ads.add(new Property(rs.getString(3), rs.getInt(4), rs.getString(5), null, null, 5, PropertyType.RENT));
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -500,10 +500,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from House");
             while (rs.next()) {
                 // to be implemented
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getInt(3) + "  " + rs.getInt(4));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getInt(3) + "  " + rs.getInt(4));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -512,10 +512,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Advertisement ad join Mobile j on ad.advertisementID=j.AdvertisementID");
             while (rs.next()) {
                 ads.add(new Mobile(rs.getString(3), rs.getInt(4), rs.getString(5), null, null, rs.getString(13), Condition.NEW));
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3) + "  " + rs.getString(4));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getString(3) + "  " + rs.getString(4));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -524,10 +524,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Vehicle");
             while (rs.next()) {
 
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getInt(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + "  " + rs.getInt(6) + "  " + rs.getFloat(7));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getInt(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + "  " + rs.getInt(6) + "  " + rs.getFloat(7));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -536,10 +536,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Report");
             while (rs.next()) {
 
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getInt(3) + "  " + rs.getInt(4) + "  " + rs.getString(5) + "  " + rs.getInt(6));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getInt(3) + "  " + rs.getInt(4) + "  " + rs.getString(5) + "  " + rs.getInt(6));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -548,10 +548,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Followings");
             while (rs.next()) {
 
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -560,10 +560,10 @@ public class DBConnection {
             ResultSet rs = stmt.executeQuery("select * from Likes");
             while (rs.next()) {
 
-                System.out.println(rs.getInt(1) + "  " + rs.getInt(2));
+                OLX.terminal.println(rs.getInt(1) + "  " + rs.getInt(2));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
         }
     }
 
@@ -579,7 +579,7 @@ public class DBConnection {
                 return true;
             return false;
         } catch (Exception e) {
-            System.out.println(e);
+            OLX.terminal.println(e);
             return false;
         }
     }

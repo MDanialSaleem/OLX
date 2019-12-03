@@ -46,11 +46,11 @@ public class Vehicle extends Advertisement {
     @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
-        System.out.println("Make "+make);
-        System.out.println("Condition "+condition);
-        System.out.println("Registeration date "+registeration);
-        System.out.println("Fuel "+fuel);
-        System.out.println("Km Drivern "+KMdriven);
+        OLX.terminal.println("Make "+make);
+        OLX.terminal.println("Condition "+condition);
+        OLX.terminal.println("Registeration date "+registeration);
+        OLX.terminal.println("Fuel "+fuel);
+        OLX.terminal.println("Km Drivern "+KMdriven);
 
     }
     @Override
@@ -83,7 +83,7 @@ public class Vehicle extends Advertisement {
     public void editAdvertisement() {
 
 
-        System.out.println("Enter new values or press \"Enter\" to skip");
+        OLX.terminal.println("Enter new values or press \"Enter\" to skip");
 
         super.editAdvertisement();
 

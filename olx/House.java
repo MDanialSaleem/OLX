@@ -29,8 +29,8 @@ public class House extends Property {
     @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
-        System.out.println("Bedrooms "+NoOfBedrooms);
-        System.out.println("Bathrooms "+NoOfBathrooms);
+        OLX.terminal.println("Bedrooms "+NoOfBedrooms);
+        OLX.terminal.println("Bathrooms "+NoOfBathrooms);
 
     }
     @Override

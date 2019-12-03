@@ -13,11 +13,11 @@ public class Message {
     }
     
     public void viewMessage() {
-    	System.out.println("===========");
-    	System.out.println(sender.getName());
-    	System.out.println(time);
-    	System.out.println(text);
-    	System.out.println("===========");
+    	OLX.terminal.println("===========");
+    	OLX.terminal.println(sender.getName());
+    	OLX.terminal.println(time);
+    	OLX.terminal.println(text);
+    	OLX.terminal.println("===========");
     	
     }
 }

@@ -24,13 +24,13 @@ public class Pets extends Advertisement{
     @Override
     public void viewAdvertisement(){
         super.viewAdvertisement();
-        System.out.println("Breed "+breed);
+        OLX.terminal.println("Breed "+breed);
     }
     @Override
     public void editAdvertisement() {
 
 
-        System.out.println("Enter new values or press \"Enter\" to skip");
+        OLX.terminal.println("Enter new values or press \"Enter\" to skip");
 
         super.editAdvertisement();
 
