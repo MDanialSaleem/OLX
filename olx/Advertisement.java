@@ -79,8 +79,6 @@ public class Advertisement {
         OLX.terminal.println("Description "+description);
         OLX.terminal.println("Views "+views);
         OLX.terminal.println("Likes "+likes);
-
-        OLX.terminal.println("--------------------------------------------------");
     }
 
     class Sortbyprice implements Comparator<Advertisement>

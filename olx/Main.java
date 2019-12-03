@@ -116,15 +116,30 @@ public class Main {
     }
 	
 	public static void Search() {
-		System.out.println("Welcome to search");
+		OLX.terminal.println("Welcome to search");
 		String category = textIO.newEnumInputReader(Categories.class).read("Please choose the category").name();
 		String searchKeyWord = textIO.newStringInputReader().read("Search keyword: ");
 		
 		try {
-			List<Advertisement> ls = OLX.DBCON.Search(searchKeyWord, category);
-			for(Advertisement l : ls) {
-				l.viewAdvertisement();
-			}
+			List<Advertisement> adsReturned = OLX.DBCON.Search(searchKeyWord, category);
+				//QUERY DB TO GET RESULTS HERE.
+				QueryBuilder builder = new QueryBuilder(adsReturned);
+				OLX.terminal.println("Now enter filters. If you do not want to specify a filter, leave it empty");
+				int priceUpBound = textIO.newIntInputReader()
+						.withDefaultValue(Integer.MAX_VALUE)
+						.read("Price upper bound");
+				int priceLowerBound = textIO.newIntInputReader()
+						.withMaxVal(Integer.MAX_VALUE - 1)
+						.withDefaultValue(0)
+						.read("Price Lower Bound");
+				
+				if(priceUpBound != Integer.MAX_VALUE && priceLowerBound != 0) {
+					builder.addIntFilter(new RangeFilter<Integer>("Price", priceLowerBound, priceUpBound));
+				}
+				
+				AdvertisementViewer viewer = new AdvertisementViewer(builder.getResults());
+				viewer.display();
+
 		}
 		catch(Exception e) {
 			System.out.println(e);
@@ -132,26 +147,7 @@ public class Main {
 
 		
 		
-		/*
-		//QUERY DB TO GET RESULTS HERE.
-		QueryBuilder builder = new QueryBuilder();
-		
-		System.out.println("Now enter filters. If you do not want to specify a filter, leave it empty");
-		
-		int priceUpBound = textIO.newIntInputReader()
-				.withDefaultValue(Integer.MAX_VALUE)
-				.read("Price upper bound");
-		int priceLowerBound = textIO.newIntInputReader()
-				.withMaxVal(Integer.MAX_VALUE - 1)
-				.withDefaultValue(0)
-				.read("Price Lower Bound");
-		
-		if(priceUpBound != Integer.MAX_VALUE && priceLowerBound != 0) {
-			builder.addIntFilter(new RangeFilter<Integer>("Price", priceLowerBound, priceUpBound));
-		}
-		*/
-		
-		//other category specific filters here.
+
 	}
 		
 		

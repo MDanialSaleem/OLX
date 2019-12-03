@@ -178,7 +178,9 @@ public class UserAccount extends Account {
     }
 
     public void viewUserProfile() {
-    	//implement view user functionality here.
+    	OLX.terminal.println("=======USER PROFILE========");
+    	OLX.terminal.printf("Name: %s\nEmail: %s\nPhone:%s\n", this.Name, this.Email, this.PhoneNumber);
+    	
     }
     public void createAdvertisement() {
 
