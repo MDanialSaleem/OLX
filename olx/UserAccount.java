@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 import org.slf4j.*;
 
@@ -49,7 +50,14 @@ public class UserAccount extends Account {
         ChatsInitiated = chatsInitiated;
     }
 
-    public Advertisement postAdvertisement(Advertisement ad) {
+	public UserAccount(String name, Date date, String email, String number, String password, Location loc2) {
+		super(name, date.toInstant()
+			      .atZone(ZoneId.systemDefault())
+			      .toLocalDate(), email, number, password);
+		this.loc = loc2;
+	}
+
+	public Advertisement postAdvertisement(Advertisement ad) {
         return null;
         //have to implement this.
     }

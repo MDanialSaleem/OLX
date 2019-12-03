@@ -1,7 +1,10 @@
 package olx;
 
 import java.util.*;
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
+
 import org.slf4j.*;
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
@@ -20,6 +23,13 @@ public class AdminAccount extends Account {
 	}
 	
 	
+	public AdminAccount(String string, Date date, String string2, String string3, String string4) {
+		super(string, date.toInstant()
+			      .atZone(ZoneId.systemDefault())
+			      .toLocalDate(), string2, string3, string4);
+	}
+
+
 	public boolean hasWaitingAds() {
 		return hasWaitingAds;
 	}
