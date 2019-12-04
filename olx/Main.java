@@ -125,9 +125,13 @@ public class Main {
 	
 	public static void Search() {
 		OLX.terminal.println("Welcome to search");
-		String category = textIO.newEnumInputReader(Categories.class).read("Please choose the category").name();
+
 		String searchKeyWord = textIO.newStringInputReader().read("Search keyword: ");
+		OLX.getInstance().search(searchKeyWord);
 		
+		
+		
+		String category = textIO.newEnumInputReader(Categories.class).read("Please choose the category").name();
 		try {
 			List<Advertisement> adsReturned = OLX.DBCON.Search(searchKeyWord, category);
 				//QUERY DB TO GET RESULTS HERE.
