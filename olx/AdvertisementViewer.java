@@ -24,8 +24,9 @@ public class AdvertisementViewer {
 		OLX.terminal.println("Press 1 to visit seller profile");
 		OLX.terminal.println("Press 2 to like advertisement");
 		OLX.terminal.println("Press 3 to report advertisement");
+		OLX.terminal.println("Press 4 to share advertisement");
 		
-		int input = textIO.newIntInputReader().withMinVal(-1).withMaxVal(3).withDefaultValue(-1).read("Input");
+		int input = textIO.newIntInputReader().withMinVal(-1).withMaxVal(4).withDefaultValue(-1).read("Input");
 
 		switch (input) {
 		case 1:
@@ -40,6 +41,8 @@ public class AdvertisementViewer {
 			else {
 				OLX.getInstance().getCurrentUserAccount().likeAdvertisement(ad);
 			}
+			displayAd(ad);
+			break;
 		case 3:
 			if(!userLoggedIn) {
 				OLX.terminal.println("You need to be logged in to perform this action");
@@ -48,6 +51,11 @@ public class AdvertisementViewer {
 				ad.reportAdvertisement();
 				displayAd(ad);
 			}
+			break;
+		case 4:
+			OLX.terminal.println(ad.share());
+			displayAd(ad);
+			break;
 		}
 		
 	}

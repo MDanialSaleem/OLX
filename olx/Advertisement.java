@@ -68,10 +68,6 @@ public class Advertisement {
         this.description = description;
     }
 
-    public String share() {
-        return "return url here";
-    }
-
     public void viewAdvertisement() {
     	OLX.terminal.println("=========VIEWING ADVERTISEMENT DETAILS=========");
         OLX.terminal.println("Title "+tittle);
@@ -93,6 +89,10 @@ public class Advertisement {
     }
 
 
+    public String share() {
+    	return "OLX/" + this.creator.getName() + "/" + this.tittle;
+    }
+    
     public void editAdvertisement() {
         OLX.terminal.println("Enter new values or press \"Enter\" to skip");
 
