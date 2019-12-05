@@ -47,7 +47,7 @@ public class UserAccount extends Account {
         this.likedAds = likedAds;
         reportedAds = reported;
         Followers = followers;
-        ChatsInitiated = chatsInitiated;
+        ChatsInitiated = new ArrayList<>();
     }
 
 	public UserAccount(String name, Date date, String email, String number, String password, Location loc2) {

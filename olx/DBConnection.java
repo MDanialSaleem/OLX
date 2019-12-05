@@ -503,7 +503,7 @@ public class DBConnection {
                 retAds.add(new Pets(title, price, desc, acc.loc, acc, breed));}
         }
         else if(cat.equalsIgnoreCase("Electronics")){
-            String s = "Select * from Advertisement a join Electronics j on a.advertisementID=j.AdvertisementID where title LIKE '%'+?+'%'";
+            String s = "Select * from Advertisement a join Electronics e on a.advertisementID=e.AdvertisementID where title LIKE '%'+?+'%'";
             PreparedStatement prepStmt = con.prepareStatement(s);
             prepStmt.setString(1, Title);
             ResultSet rs = prepStmt.executeQuery();
